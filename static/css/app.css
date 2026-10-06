@@ -12,6 +12,13 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: "JetBrainsMono";
+  src: url("/static/fonts/JetBrainsMono-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 :root {
   --bg: #f7f9fc;
   --bg-soft: #ffffff;
@@ -102,6 +109,7 @@ a:hover { text-decoration: underline; }
   transition: transform var(--speed) var(--ease);
 }
 .brand:hover img { transform: scale(1.05); }
+.brand span { font-family: "JetBrainsMono", ui-monospace, monospace; }
 .site-nav { display: flex; gap: 4px; flex-wrap: wrap; }
 .nav-toggle { display: none; }
 .site-nav a {
@@ -492,7 +500,7 @@ h2 { font-size: 1.3rem; font-weight: 800; }
   border: 1px solid var(--border);
   background: var(--bg-soft);
   color: var(--text);
-  font-family: ui-monospace, monospace;
+  font-family: "JetBrainsMono", ui-monospace, monospace;
 }
 .blog-view h1 {
   font-size: 2rem;
@@ -731,6 +739,6 @@ h2 { font-size: 1.3rem; font-weight: 800; }
   border: 1px solid var(--border);
   background: var(--bg-soft);
   color: var(--text);
-  font-family: ui-monospace, monospace;
+  font-family: "JetBrainsMono", ui-monospace, monospace;
   font-size: 0.85rem;
 }
