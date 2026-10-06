@@ -262,31 +262,31 @@ class M {
 }
 const R = {
   type: "button",
-  title: "Undo",
+  title: "برگردان",
   command: "undo",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"></path><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path></svg>'
 }, A = {
   type: "button",
-  title: "Redo",
+  title: "تکرار",
   command: "redo",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7v6h-6"></path><path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7"></path></svg>'
 }, H = {
   type: "select",
-  title: "Heading",
+  title: "عنوان",
   command: "formatBlock",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h8"></path><path d="M4 18V6"></path><path d="M12 18V6"></path><path d="M17 12h3"></path><path d="M17 18V6"></path></svg>',
   options: [
-    { label: "Paragraph", value: "p" },
-    { label: "Heading 1", value: "h1" },
-    { label: "Heading 2", value: "h2" },
-    { label: "Heading 3", value: "h3" },
-    { label: "Heading 4", value: "h4" },
-    { label: "Heading 5", value: "h5" },
-    { label: "Heading 6", value: "h6" }
+    { label: "پاراگراف", value: "p" },
+    { label: "عنوان ۱", value: "h1" },
+    { label: "عنوان ۲", value: "h2" },
+    { label: "عنوان ۳", value: "h3" },
+    { label: "عنوان ۴", value: "h4" },
+    { label: "عنوان ۵", value: "h5" },
+    { label: "عنوان ۶", value: "h6" }
   ]
 }, N = {
   type: "select",
-  title: "Font",
+  title: "فونت",
   command: "fontFamily",
   options: [
     { label: "Inter", value: "'Inter', sans-serif" },
@@ -307,16 +307,16 @@ const R = {
   ]
 }, I = {
   type: "input",
-  title: "Size (px)",
+  title: "اندازه",
   command: "fontSize",
-  placeholder: "Size",
+  placeholder: "اندازه",
   value: "16"
 }, P = {
   type: "select",
-  title: "Line Height",
+  title: "فاصله خطوط",
   command: "lineHeight",
   options: [
-    { label: "Normal", value: "normal" },
+    { label: "عادی", value: "normal" },
     { label: "1.0", value: "1.0" },
     { label: "1.1", value: "1.1" },
     { label: "1.2", value: "1.2" },
@@ -332,110 +332,110 @@ const R = {
   value: "normal"
 }, B = {
   type: "button",
-  title: "Bold",
+  title: "درشت",
   command: "bold",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 12a4 4 0 0 0 0-8H6v8"/><path d="M15 20a4 4 0 0 0 0-8H6v8Z"/></svg>'
 }, z = {
   type: "button",
-  title: "Italic",
+  title: "کج",
   command: "italic",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="4" x2="10" y2="4"></line><line x1="14" y1="20" x2="5" y2="20"></line><line x1="15" y1="4" x2="9" y2="20"></line></svg>'
 }, O = {
   type: "button",
-  title: "Underline",
+  title: "زیرخط",
   command: "underline",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3"></path><line x1="4" y1="21" x2="20" y2="21"></line></svg>'
 }, D = {
   type: "button",
-  title: "Strikethrough",
+  title: "خط‌خورده",
   command: "strikeThrough",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4H9a3 3 0 0 0-2.83 4"></path><path d="M14 12a4 4 0 0 1 0 8H6"></path><line x1="4" y1="12" x2="20" y2="12"></line></svg>'
 }, j = {
   type: "color-picker",
-  title: "Text Color",
+  title: "رنگ متن",
   command: "foreColor",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="m6 16 6-12 6 12"/><path d="M8 12h8"/></svg>',
   value: "#1e293b"
 }, q = {
   type: "color-picker",
-  title: "Highlight Color",
+  title: "رنگ هایلایت",
   command: "backColor",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11-6 6v3h9l3-3"/><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/></svg>',
   value: "#ffffff"
 }, U = {
   type: "button",
-  title: "Align Left",
+  title: "چینش به چپ",
   command: "justifyLeft",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="6" x2="3" y2="6"></line><line x1="15" y1="10" x2="3" y2="10"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="15" y1="18" x2="3" y2="18"></line></svg>'
 }, F = {
   type: "button",
-  title: "Align Center",
+  title: "چینش به وسط",
   command: "justifyCenter",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="6" x2="3" y2="6"></line><line x1="18" y1="10" x2="6" y2="10"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="18" y1="18" x2="6" y2="18"></line></svg>'
 }, W = {
   type: "button",
-  title: "Align Right",
+  title: "چینش به راست",
   command: "justifyRight",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="10" x2="9" y2="10"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="9" y2="18"></line></svg>'
 }, $ = {
   type: "button",
-  title: "Justify",
+  title: "چینش کامل",
   command: "justifyFull",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="10" x2="3" y2="10"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg>'
 }, _ = {
   type: "button",
-  title: "Bulleted List",
+  title: "لیست بولت‌دار",
   command: "insertUnorderedList",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>'
 }, V = {
   type: "button",
-  title: "Numbered List",
+  title: "لیست شماره‌دار",
   command: "insertOrderedList",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" y1="6" x2="21" y2="6"></line><line x1="10" y1="12" x2="21" y2="12"></line><line x1="10" y1="18" x2="21" y2="18"></line><path d="M4 6h1v4"></path><path d="M4 10h2"></path><path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"></path></svg>'
 }, K = {
   type: "button",
-  title: "Outdent",
+  title: "کم‌کردن تورفتگی",
   command: "outdent",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline><line x1="21" y1="12" x2="9" y2="12"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg>'
 }, G = {
   type: "button",
-  title: "Indent",
+  title: "تورفتگی",
   command: "indent",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline><line x1="3" y1="12" x2="15" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>'
 }, X = {
   type: "button",
-  title: "Horizontal Rule",
+  title: "خط جداکننده",
   command: "insertHorizontalRule",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>'
 }, Y = {
   type: "button",
-  title: "Clear Formatting",
+  title: "پاک‌کردن قالب‌بندی",
   command: "removeFormat",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"></path><path d="M5 20h6"></path><path d="M13 4 8 20"></path><path d="m15 15 5 5"></path><path d="m20 15-5 5"></path></svg>'
 }, Q = {
   type: "button",
-  title: "Insert Emoji",
+  title: "درج ایموجی",
   command: "insertEmoji",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>'
 }, J = {
   type: "button",
-  title: "Insert Link",
+  title: "درج پیوند",
   command: "createLink",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>'
 }, Z = {
   type: "button",
-  title: "Insert Image",
+  title: "درج تصویر",
   command: "insertImage",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>'
 }, ee = {
   type: "button",
   command: "insertTable",
-  title: "Insert Table",
+  title: "درج جدول",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3zM21 9H3M21 15H3M12 3v18"/></svg>'
 }, te = {
   type: "button",
   id: "code-block",
-  title: "Code Block",
+  title: "بلوک کد",
   command: "insertCodeBlock",
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>'
 }, b = { type: "divider", title: "" }, x = [
@@ -500,9 +500,9 @@ class E {
     const s = document.createElement("div");
     s.classList.add("te-modal-footer");
     const r = document.createElement("button");
-    r.classList.add("te-modal-btn", "te-modal-btn-cancel"), r.textContent = "Cancel";
+    r.classList.add("te-modal-btn", "te-modal-btn-cancel"), r.textContent = "انصراف";
     const l = document.createElement("button");
-    return l.classList.add("te-modal-btn", "te-modal-btn-confirm"), l.textContent = "Insert", s.appendChild(r), s.appendChild(l), i.appendChild(s), i;
+    return l.classList.add("te-modal-btn", "te-modal-btn-confirm"), l.textContent = "درج", s.appendChild(r), s.appendChild(l), i.appendChild(s), i;
   }
   setupEvents() {
     const e = this.container.querySelector(".te-modal-btn-cancel"), t = this.container.querySelector(".te-modal-btn-confirm");
@@ -591,8 +591,8 @@ class ie {
     if (e.command === "createLink") {
       const t = window.getSelection();
       t && t.rangeCount > 0 && (this.savedRange = t.getRangeAt(0).cloneRange()), this.activeModal && this.activeModal.close(), this.activeModal = new E(
-        "Insert Link",
-        [{ id: "url", label: "URL", type: "text", placeholder: "https://example.com" }],
+        "درج پیوند",
+        [{ id: "url", label: "آدرس", type: "text", placeholder: "https://example.com" }],
         (i) => {
           if (this.savedRange) {
             const n = window.getSelection();
@@ -887,7 +887,7 @@ class ne {
     const n = document.createElement("img");
     n.src = e.src, n.alt = e.alt || "", e.width && (n.style.width = `${e.width}px`), e.height && (n.style.height = `${e.height}px`), n.classList.add("te-image");
     const o = document.createElement("figcaption");
-    if (o.classList.add("te-image-caption"), o.setAttribute("contenteditable", "true"), o.setAttribute("data-placeholder", "Type caption..."), ["top-left", "top-right", "bottom-left", "bottom-right"].forEach((r) => {
+    if (o.classList.add("te-image-caption"), o.setAttribute("contenteditable", "true"), o.setAttribute("data-placeholder", "شرح تصویر می‌نویس..."), ["top-left", "top-right", "bottom-left", "bottom-right"].forEach((r) => {
       const l = document.createElement("div");
       l.classList.add("te-image-resizer", `te-resizer-${r}`), i.appendChild(l);
     }), i.appendChild(n), i.appendChild(o), t.replaceChild(i, e), !i.nextElementSibling) {
@@ -1063,7 +1063,7 @@ class ne {
     const t = document.createElement("div");
     t.className = "te-loader-shimmer";
     const i = document.createElement("div");
-    i.className = "te-loader-text", i.textContent = "Initializing Editor...", this.loaderElement.appendChild(e), this.loaderElement.appendChild(t), this.loaderElement.appendChild(i), this.container.appendChild(this.loaderElement);
+    i.className = "te-loader-text", i.textContent = "در حال آماده‌سازی ویرایشگر…", this.loaderElement.appendChild(e), this.loaderElement.appendChild(t), this.loaderElement.appendChild(i), this.container.appendChild(this.loaderElement);
   }
   hideLoader() {
     this.loaderElement && (this.loaderElement.classList.add("hidden"), setTimeout(() => {
@@ -1072,7 +1072,7 @@ class ne {
   }
   createEditableElement() {
     const e = document.createElement("div");
-    return e.setAttribute("contenteditable", "true"), e.setAttribute("role", "textbox"), e.setAttribute("aria-multiline", "true"), e.setAttribute("spellcheck", "false"), e.classList.add("te-content"), this.options.placeholder ? (e.setAttribute("data-placeholder", this.options.placeholder), e.setAttribute("aria-label", this.options.placeholder)) : e.setAttribute("aria-label", "Rich Text Editor"), e.style.minHeight = "150px", e.style.outline = "none", e.style.padding = "1rem", e.innerHTML === "" && (e.innerHTML = "<p><br></p>"), e;
+    return e.setAttribute("contenteditable", "true"), e.setAttribute("role", "textbox"), e.setAttribute("aria-multiline", "true"), e.setAttribute("spellcheck", "false"), e.classList.add("te-content"), this.options.placeholder ? (e.setAttribute("data-placeholder", this.options.placeholder), e.setAttribute("aria-label", this.options.placeholder)) : e.setAttribute("aria-label", "ویرایشگر متن"), e.style.minHeight = "150px", e.style.outline = "none", e.style.padding = "1rem", e.innerHTML === "" && (e.innerHTML = "<p><br></p>"), e;
   }
   /**
    * Focuses the editor.
@@ -1094,6 +1094,11 @@ class ne {
     }
     if (e === "insertCodeBlock") {
       this.insertCodeBlock();
+      return;
+    }
+    if (e === "indent" || e === "outdent") {
+      this.applyIndent(e === "indent");
+      this.normalize(), this.triggerChange();
       return;
     }
     this.normalize(), this.triggerChange();
@@ -1459,7 +1464,7 @@ class ne {
     const s = document.createElement("img");
     s.src = e, s.classList.add("te-image"), t && s.setAttribute("data-image-id", t);
     const r = document.createElement("figcaption");
-    r.classList.add("te-image-caption"), r.setAttribute("contenteditable", "true"), r.setAttribute("data-placeholder", "Type caption..."), ["top-left", "top-right", "bottom-left", "bottom-right"].forEach((h) => {
+    r.classList.add("te-image-caption"), r.setAttribute("contenteditable", "true"), r.setAttribute("data-placeholder", "شرح تصویر می‌نویس..."), ["top-left", "top-right", "bottom-left", "bottom-right"].forEach((h) => {
       const d = document.createElement("div");
       d.classList.add("te-image-resizer", `te-resizer-${h}`), o.appendChild(d);
     }), o.appendChild(s), o.appendChild(r), n.deleteContents(), n.insertNode(o);
@@ -1587,11 +1592,11 @@ class ne {
           let m = d.querySelector(".te-code-controls");
           if (m || (m = document.createElement("div"), m.className = "te-code-controls", m.contentEditable = "false", d.insertBefore(m, h)), !m.querySelector(".te-code-copy-btn")) {
             const u = document.createElement("div");
-            u.className = "te-code-copy-btn", u.textContent = "Copy", u.contentEditable = "false", m.appendChild(u);
+            u.className = "te-code-copy-btn", u.textContent = "کپی", u.contentEditable = "false", m.appendChild(u);
           }
           if (!m.querySelector(".te-code-remove-btn")) {
             const u = document.createElement("div");
-            u.className = "te-code-remove-btn", u.contentEditable = "false", u.title = "Remove Code Block", u.innerHTML = '<span class="te-close-icon">&times;</span>', m.appendChild(u);
+            u.className = "te-code-remove-btn", u.contentEditable = "false", u.title = "حذف بلوک کد", u.innerHTML = '<span class="te-close-icon">&times;</span>', m.appendChild(u);
           }
           d.querySelectorAll(":scope > .te-code-remove-btn, :scope > pre > .te-code-copy-btn").forEach((u) => u.remove()), ["top", "bottom", "left", "right"].forEach((u) => {
             if (!d.querySelector(`.te-bar-${u}`)) {
@@ -1727,7 +1732,7 @@ class ne {
           c && (c.src = r);
         }
         if (s.size > t * 1024 * 1024) {
-          alert(`Image "${i.name}" exceeds the ${t}MB limit even after compression.`), n?.remove();
+          alert(`حجم تصویر «${i.name}» از سقف ${t} مگابایت بیشتر است، حتی بعد از فشرده‌سازی.`), n?.remove();
           continue;
         }
         const l = await T.uploadFile(s, this.options);
@@ -1767,15 +1772,36 @@ class ne {
     const s = document.createElement("div");
     s.className = "te-code-controls", s.contentEditable = "false";
     const r = document.createElement("div");
-    r.className = "te-code-copy-btn", r.textContent = "Copy", r.contentEditable = "false";
+    r.className = "te-code-copy-btn", r.textContent = "کپی", r.contentEditable = "false";
     const l = document.createElement("div");
-    l.className = "te-code-remove-btn", l.innerHTML = '<span class="te-close-icon">&times;</span>', l.contentEditable = "false", l.title = "Remove Code Block", s.appendChild(r), s.appendChild(l), i.appendChild(s), i.appendChild(n), ["top", "bottom", "left", "right"].forEach((c) => {
+    l.className = "te-code-remove-btn", l.innerHTML = '<span class="te-close-icon">&times;</span>', l.contentEditable = "false", l.title = "حذف بلوک کد", s.appendChild(r), s.appendChild(l), i.appendChild(s), i.appendChild(n), ["top", "bottom", "left", "right"].forEach((c) => {
       const a = document.createElement("div");
       a.className = `te-resize-bar te-bar-${c}`, a.contentEditable = "false", i.appendChild(a);
     }), ["tl", "tr", "bl", "br"].forEach((c) => {
       const a = document.createElement("div");
       a.className = `te-resize-corner te-corner-${c}`, a.contentEditable = "false", i.appendChild(a);
     }), t.deleteContents(), t.insertNode(i), this.selection.setCursorAtStart(o), this.normalize(), this.history.record(this.editableElement.innerHTML, this.selection.getSelectionPath(this.editableElement));
+  }
+  applyIndent(e) {
+    const i = this.selection.getRange();
+    if (!i) return;
+    const n = this.editableElement, o = e ? 28 : -28, a = getComputedStyle(n).direction === "rtl", s = new Set();
+    i.getClientRects().forEach((u) => n.querySelectorAll("p, li, h1, h2, h3, h4, h5, h6, blockquote, pre, figure, div").forEach((c) => {
+      const d = c.getClientRects();
+      d.length > 0 && d.some((v) => v.top < u.bottom && v.bottom > u.top) && s.add(c);
+    }));
+    if (s.size === 0) {
+      let u = i.commonAncestorContainer;
+      u.nodeType === 3 && (u = u.parentElement);
+      u && n.contains(u) && (u.matches && u.matches("p, li, h1, h2, h3, h4, h5, h6, blockquote, pre, figure, div") ? s.add(u) : n.querySelectorAll("p, li, h1, h2, h3, h4, h5, h6, blockquote, pre, figure, div").forEach((v) => {
+        u.contains(v) && s.add(v);
+      }));
+    }
+    const r = a ? "marginRight" : "marginLeft";
+    s.forEach((v) => {
+      const f = parseInt(getComputedStyle(v)[r], 10) || 0, g = Math.max(0, f + o);
+      g === 0 ? v.style.removeProperty(r.toLowerCase()) : v.style[r] = g + "px";
+    });
   }
   handleCodeRemove(e) {
     const t = e.closest(".te-code-wrapper");
@@ -1799,10 +1825,10 @@ class ne {
     if (e.classList.contains("copied")) return;
     const t = e.parentElement;
     if (!t) return;
-    const i = t.querySelector("code"), n = i ? i.innerText : t.innerText.replace("Copy", "").trim();
+    const i = t.querySelector("code"), n = i ? i.innerText : t.innerText.replace("کپی", "").trim();
     navigator.clipboard.writeText(n).then(() => {
       const o = e.textContent;
-      e.textContent = "Copied!", e.classList.add("copied"), setTimeout(() => {
+      e.textContent = "کپی شد", e.classList.add("copied"), setTimeout(() => {
         e.textContent = o, e.classList.remove("copied");
       }, 2e3);
     });
@@ -1921,6 +1947,368 @@ class ne {
     window.addEventListener("mousemove", p), window.addEventListener("mouseup", f);
   }
 }
+const EMOJI_LIST = [{ emoji: "😀", name: "grinning", category: "خنده و احساسات" }, { emoji: "😃", name: "smile", category: "خنده و احساسات" }, { emoji: "😄", name: "laughing", category: "خنده و احساسات" }, { emoji: "😁", name: "beaming", category: "خنده و احساسات" }, { emoji: "😆", name: "joy", category: "خنده و احساسات" }, { emoji: "😅", name: "sweat", category: "خنده و احساسات" }, { emoji: "😂", name: "rofl", category: "خنده و احساسات" }, { emoji: "😊", name: "blush", category: "خنده و احساسات" }, { emoji: "😇", name: "innocent", category: "خنده و احساسات" }, { emoji: "🙂", name: "slight-smile", category: "خنده و احساسات" }, { emoji: "🙃", name: "upside-down", category: "خنده و احساسات" }, { emoji: "😉", name: "wink", category: "خنده و احساسات" }, { emoji: "😌", name: "relieved", category: "خنده و احساسات" }, { emoji: "😍", name: "heart-eyes", category: "خنده و احساسات" }, { emoji: "😘", name: "kiss", category: "خنده و احساسات" }, { emoji: "🥰", name: "adoring", category: "خنده و احساسات" }, { emoji: "😗", name: "kiss-face", category: "خنده و احساسات" }, { emoji: "😙", name: "kiss-blush", category: "خنده و احساسات" }, { emoji: "😚", name: "kiss-wink", category: "خنده و احساسات" }, { emoji: "😋", name: "yummy", category: "خنده و احساسات" }, { emoji: "😛", name: "stuck-out-tongue", category: "خنده و احساسات" }, { emoji: "😜", name: "wink-tongue", category: "خنده و احساسات" }, { emoji: "😏", name: "smirk", category: "خنده و احساسات" }, { emoji: "😒", name: "unamused", category: "خنده و احساسات" }, { emoji: "😞", name: "disappointed", category: "خنده و احساسات" }, { emoji: "😔", name: "pensive", category: "خنده و احساسات" }, { emoji: "😟", name: "worried", category: "خنده و احساسات" }, { emoji: "🙁", name: "slight-frown", category: "خنده و احساسات" }, { emoji: "😣", name: "confused", category: "خنده و احساسات" }, { emoji: "😖", name: "confounded", category: "خنده و احساسات" }, { emoji: "😫", name: "tired", category: "خنده و احساسات" }, { emoji: "😩", name: "weary", category: "خنده و احساسات" }, { emoji: "🥺", name: "pleading", category: "خنده و احساسات" }, { emoji: "😮", name: "open-mouth", category: "خنده و احساسات" }, { emoji: "😯", name: "hushed", category: "خنده و احساسات" }, { emoji: "😲", name: "astonished", category: "خنده و احساسات" }, { emoji: "🥱", name: "yawning", category: "خنده و احساسات" }, { emoji: "😦", name: "grimacing", category: "خنده و احساسات" }, { emoji: "😧", name: "angry", category: "خنده و احساسات" }, { emoji: "😨", name: "fearful", category: "خنده و احساسات" }, { emoji: "😰", name: "anxious", category: "خنده و احساسات" }, { emoji: "😶", name: "neutral", category: "خنده و احساسات" }, { emoji: "😐", name: "expressionless", category: "خنده و احساسات" }, { emoji: "😑", name: "meh", category: "خنده و احساسات" }, { emoji: "😬", name: "grimace", category: "خنده و احساسات" }, { emoji: "🙄", name: "roll-eyes", category: "خنده و احساسات" }, { emoji: "😕", name: "confused2", category: "خنده و احساسات" }, { emoji: "😤", name: "triumph", category: "خنده و احساسات" }, { emoji: "😳", name: "flushed", category: "خنده و احساسات" }, { emoji: "🥶", name: "cold-face", category: "خنده و احساسات" }, { emoji: "🥵", name: "hot-face", category: "خنده و احساسات" }, { emoji: "😎", name: "cool", category: "خنده و احساسات" }, { emoji: "🙃", name: "upside", category: "خنده و احساسات" }, { emoji: "🙌", name: "raise-hands", category: "خنده و احساسات" }, { emoji: "🙏", name: "pray", category: "خنده و احساسات" }, { emoji: "❤️", name: "red-heart", category: "نمادها" }, { emoji: "✨", name: "sparkles", category: "نمادها" }, { emoji: "⭐", name: "star", category: "نمادها" }, { emoji: "⚡", name: "zap", category: "نمادها" }, { emoji: "☘", name: "shamrock", category: "نمادها" }, { emoji: "☕", name: "coffee", category: "نمادها" }, { emoji: "✈", name: "airplane", category: "نمادها" }, { emoji: "⛵", name: "sailboat", category: "نمادها" }, { emoji: "✉", name: "envelope", category: "نمادها" }, { emoji: "⚽", name: "soccer", category: "نمادها" }, { emoji: "⚾", name: "baseball", category: "نمادها" }, { emoji: "⛳", name: "golf", category: "نمادها" }, { emoji: "♠", name: "spades", category: "نمادها" }, { emoji: "🤞", name: "crossed-fingers", category: "دست‌ها" }, { emoji: "👍", name: "thumbs-up", category: "دست‌ها" }, { emoji: "👎", name: "thumbs-down", category: "دست‌ها" }, { emoji: "👌", name: "ok", category: "دست‌ها" }, { emoji: "🤌", name: "pinched-fingers", category: "دست‌ها" }, { emoji: "🤟", name: "rock-on", category: "دست‌ها" }, { emoji: "🤘", name: "horns", category: "دست‌ها" }, { emoji: "👈", name: "point-left", category: "دست‌ها" }, { emoji: "👉", name: "point-right", category: "دست‌ها" }, { emoji: "👆", name: "point-up", category: "دست‌ها" }, { emoji: "👇", name: "point-down", category: "دست‌ها" }, { emoji: "☝", name: "index-up", category: "دست‌ها" }, { emoji: "👏", name: "clap", category: "دست‌ها" }, { emoji: "👊", name: "fist", category: "دست‌ها" }, { emoji: "✊", name: "raised-fist", category: "دست‌ها" }, { emoji: "👋", name: "wave", category: "دست‌ها" }, { emoji: "🖐", name: "raised-hand", category: "دست‌ها" }, { emoji: "✋", name: "stop", category: "دست‌ها" }, { emoji: "🧐", name: "monocle", category: "حیوانات" }, { emoji: "🧡", name: "orange-heart", category: "حیوانات" }, { emoji: "🐶", name: "dog", category: "حیوانات" }, { emoji: "🐱", name: "cat", category: "حیوانات" }, { emoji: "🐭", name: "mouse", category: "حیوانات" }, { emoji: "🐹", name: "hamster", category: "حیوانات" }, { emoji: "🐰", name: "rabbit", category: "حیوانات" }, { emoji: "🦊", name: "fox", category: "حیوانات" }, { emoji: "🐻", name: "bear", category: "حیوانات" }, { emoji: "🐼", name: "panda", category: "حیوانات" }, { emoji: "🐨", name: "koala", category: "حیوانات" }, { emoji: "🐯", name: "tiger", category: "حیوانات" }, { emoji: "🐮", name: "cow", category: "حیوانات" }, { emoji: "🐷", name: "pig", category: "حیوانات" }, { emoji: "🐸", name: "frog", category: "حیوانات" }, { emoji: "🐵", name: "monkey", category: "حیوانات" }, { emoji: "🐔", name: "chicken", category: "حیوانات" }, { emoji: "🐧", name: "penguin", category: "حیوانات" }, { emoji: "🐦", name: "bird", category: "حیوانات" }, { emoji: "🦆", name: "duck", category: "حیوانات" }, { emoji: "🦅", name: "eagle", category: "حیوانات" }, { emoji: "🦉", name: "owl", category: "حیوانات" }, { emoji: "🦇", name: "bat", category: "حیوانات" }, { emoji: "🐺", name: "wolf", category: "حیوانات" }, { emoji: "🐗", name: "boar", category: "حیوانات" }, { emoji: "🐛", name: "bug", category: "حیوانات" }, { emoji: "🦋", name: "butterfly", category: "حیوانات" }, { emoji: "🐌", name: "snail", category: "حیوانات" }, { emoji: "🐞", name: "ladybug", category: "حیوانات" }, { emoji: "🐜", name: "ant", category: "حیوانات" }, { emoji: "🦈", name: "shark", category: "حیوانات" }, { emoji: "🐙", name: "octopus", category: "حیوانات" }, { emoji: "🦑", name: "squid", category: "حیوانات" }, { emoji: "🐡", name: "blowfish", category: "حیوانات" }, { emoji: "🐠", name: "fish", category: "حیوانات" }, { emoji: "🐬", name: "dolphin", category: "حیوانات" }, { emoji: "🐳", name: "whale", category: "حیوانات" }, { emoji: "🐋", name: "whale2", category: "حیوانات" }, { emoji: "🐴", name: "horse", category: "حیوانات" }, { emoji: "🐝", name: "honeybee", category: "حیوانات" }, { emoji: "🐢", name: "turtle", category: "حیوانات" }, { emoji: "🐍", name: "snake", category: "حیوانات" }, { emoji: "🦎", name: "lizard", category: "حیوانات" }, { emoji: "🐊", name: "crocodile", category: "حیوانات" }, { emoji: "🐅", name: "leopard", category: "حیوانات" }, { emoji: "🐘", name: "elephant", category: "حیوانات" }, { emoji: "🦏", name: "rhino", category: "حیوانات" }, { emoji: "🦙", name: "llama", category: "حیوانات" }, { emoji: "🦒", name: "giraffe", category: "حیوانات" }, { emoji: "🐕", name: "dog2", category: "حیوانات" }, { emoji: "🐇", name: "rabbit2", category: "حیوانات" }, { emoji: "🦝", name: "raccoon", category: "حیوانات" }, { emoji: "🐐", name: "goat", category: "حیوانات" }, { emoji: "🧀", name: "cheese", category: "حیوانات" }, { emoji: "🧁", name: "cupcake", category: "حیوانات" }, { emoji: "🍏", name: "green-apple", category: "غذا و نوشیدنی" }, { emoji: "🍎", name: "red-apple", category: "غذا و نوشیدنی" }, { emoji: "🍐", name: "pear", category: "غذا و نوشیدنی" }, { emoji: "🍊", name: "orange", category: "غذا و نوشیدنی" }, { emoji: "🍋", name: "lemon", category: "غذا و نوشیدنی" }, { emoji: "🍌", name: "banana", category: "غذا و نوشیدنی" }, { emoji: "🍉", name: "watermelon", category: "غذا و نوشیدنی" }, { emoji: "🍇", name: "grapes", category: "غذا و نوشیدنی" }, { emoji: "🍓", name: "strawberry", category: "غذا و نوشیدنی" }, { emoji: "🍈", name: "melon", category: "غذا و نوشیدنی" }, { emoji: "🍒", name: "cherries", category: "غذا و نوشیدنی" }, { emoji: "🍑", name: "peach", category: "غذا و نوشیدنی" }, { emoji: "🥭", name: "mango", category: "غذا و نوشیدنی" }, { emoji: "🍍", name: "pineapple", category: "غذا و نوشیدنی" }, { emoji: "🥥", name: "coconut", category: "غذا و نوشیدنی" }, { emoji: "🥝", name: "kiwi", category: "غذا و نوشیدنی" }, { emoji: "🥕", name: "carrot", category: "غذا و نوشیدنی" }, { emoji: "🥒", name: "cucumber", category: "غذا و نوشیدنی" }, { emoji: "🍔", name: "hamburger", category: "غذا و نوشیدنی" }, { emoji: "🍟", name: "fries", category: "غذا و نوشیدنی" }, { emoji: "🍕", name: "pizza", category: "غذا و نوشیدنی" }, { emoji: "🥪", name: "sandwich", category: "غذا و نوشیدنی" }, { emoji: "🍳", name: "fried-egg", category: "غذا و نوشیدنی" }, { emoji: "🥐", name: "croissant", category: "غذا و نوشیدنی" }, { emoji: "🍞", name: "bread", category: "غذا و نوشیدنی" }, { emoji: "🥨", name: "pretzel", category: "غذا و نوشیدنی" }, { emoji: "🥖", name: "baguette", category: "غذا و نوشیدنی" }, { emoji: "🥚", name: "egg", category: "غذا و نوشیدنی" }, { emoji: "🥓", name: "bacon", category: "غذا و نوشیدنی" }, { emoji: "🥞", name: "pancakes", category: "غذا و نوشیدنی" }, { emoji: "🍝", name: "spaghetti", category: "غذا و نوشیدنی" }, { emoji: "🍜", name: "ramen", category: "غذا و نوشیدنی" }, { emoji: "🍲", name: "stew", category: "غذا و نوشیدنی" }, { emoji: "🍥", name: "fish-cake", category: "غذا و نوشیدنی" }, { emoji: "🍣", name: "sushi", category: "غذا و نوشیدنی" }, { emoji: "🍱", name: "bento", category: "غذا و نوشیدنی" }, { emoji: "🍤", name: "fried-shrimp", category: "غذا و نوشیدنی" }, { emoji: "🍙", name: "rice-ball", category: "غذا و نوشیدنی" }, { emoji: "🍛", name: "curry", category: "غذا و نوشیدنی" }, { emoji: "🍴", name: "fork-knife", category: "غذا و نوشیدنی" }, { emoji: "🍷", name: "wine", category: "غذا و نوشیدنی" }, { emoji: "🍸", name: "cocktail", category: "غذا و نوشیدنی" }, { emoji: "🍹", name: "tropical-drink", category: "غذا و نوشیدنی" }, { emoji: "🍺", name: "beer", category: "غذا و نوشیدنی" }, { emoji: "🍾", name: "champagne", category: "غذا و نوشیدنی" }, { emoji: "🍵", name: "tea", category: "غذا و نوشیدنی" }, { emoji: "🍫", name: "chocolate", category: "غذا و نوشیدنی" }, { emoji: "🍬", name: "candy", category: "غذا و نوشیدنی" }, { emoji: "🍭", name: "lollipop", category: "غذا و نوشیدنی" }, { emoji: "🍮", name: "custard", category: "غذا و نوشیدنی" }, { emoji: "🍯", name: "honey", category: "غذا و نوشیدنی" }, { emoji: "🍩", name: "doughnut", category: "غذا و نوشیدنی" }, { emoji: "🍪", name: "cookie", category: "غذا و نوشیدنی" }, { emoji: "🍰", name: "shortcake", category: "غذا و نوشیدنی" }, { emoji: "🍡", name: "dango", category: "غذا و نوشیدنی" }, { emoji: "🥮", name: "moon-cake", category: "غذا و نوشیدنی" }, { emoji: "🍧", name: "shaved-ice", category: "غذا و نوشیدنی" }, { emoji: "🍨", name: "ice-cream", category: "غذا و نوشیدنی" }, { emoji: "🚗", name: "car", category: "سفر و حمل‌ونقل" }, { emoji: "🚕", name: "taxi", category: "سفر و حمل‌ونقل" }, { emoji: "🚙", name: "suv", category: "سفر و حمل‌ونقل" }, { emoji: "🚌", name: "bus", category: "سفر و حمل‌ونقل" }, { emoji: "🚲", name: "bicycle", category: "سفر و حمل‌ونقل" }, { emoji: "🚢", name: "ship", category: "سفر و حمل‌ونقل" }, { emoji: "🚀", name: "rocket", category: "سفر و حمل‌ونقل" }, { emoji: "🛸", name: "saucer", category: "سفر و حمل‌ونقل" }, { emoji: "🚁", name: "helicopter", category: "سفر و حمل‌ونقل" }, { emoji: "🚤", name: "speedboat", category: "سفر و حمل‌ونقل" }, { emoji: "🚡", name: "aerial-lift", category: "سفر و حمل‌ونقل" }, { emoji: "🛏", name: "bed", category: "سفر و حمل‌ونقل" }, { emoji: "🚴", name: "cyclist", category: "سفر و حمل‌ونقل" }, { emoji: "💛", name: "yellow-heart", category: "اشیا" }, { emoji: "💚", name: "green-heart", category: "اشیا" }, { emoji: "💙", name: "blue-heart", category: "اشیا" }, { emoji: "💜", name: "purple-heart", category: "اشیا" }, { emoji: "🖤", name: "black-heart", category: "اشیا" }, { emoji: "💔", name: "broken-heart", category: "اشیا" }, { emoji: "💕", name: "two-hearts", category: "اشیا" }, { emoji: "💖", name: "sparkling-heart", category: "اشیا" }, { emoji: "💗", name: "growing-heart", category: "اشیا" }, { emoji: "💘", name: "heart-arrow", category: "اشیا" }, { emoji: "💝", name: "gift-heart", category: "اشیا" }, { emoji: "💯", name: "hundred", category: "اشیا" }, { emoji: "🔥", name: "fire", category: "اشیا" }, { emoji: "💥", name: "collision", category: "اشیا" }, { emoji: "💪", name: "muscle", category: "اشیا" }, { emoji: "🦁", name: "lion", category: "اشیا" }, { emoji: "🦀", name: "crab", category: "اشیا" }, { emoji: "🦄", name: "unicorn", category: "اشیا" }, { emoji: "🗼", name: "tower", category: "اشیا" }, { emoji: "🗽", name: "statue-liberty", category: "اشیا" }, { emoji: "📱", name: "phone", category: "اشیا" }, { emoji: "💻", name: "laptop", category: "اشیا" }, { emoji: "🖥", name: "desktop", category: "اشیا" }, { emoji: "🖨", name: "printer", category: "اشیا" }, { emoji: "🖱", name: "mouse-pointer", category: "اشیا" }, { emoji: "💽", name: "cd", category: "اشیا" }, { emoji: "💾", name: "floppy", category: "اشیا" }, { emoji: "💿", name: "dvd", category: "اشیا" }, { emoji: "📀", name: "vhs", category: "اشیا" }, { emoji: "📺", name: "tv", category: "اشیا" }, { emoji: "📻", name: "radio", category: "اشیا" }, { emoji: "📼", name: "vhs-tape", category: "اشیا" }, { emoji: "📷", name: "camera", category: "اشیا" }, { emoji: "📸", name: "camera-flash", category: "اشیا" }, { emoji: "📹", name: "video", category: "اشیا" }, { emoji: "🔍", name: "magnifier-right", category: "اشیا" }, { emoji: "🔬", name: "microscope", category: "اشیا" }, { emoji: "🔭", name: "telescope", category: "اشیا" }, { emoji: "🕯", name: "candle", category: "اشیا" }, { emoji: "💡", name: "bulb", category: "اشیا" }, { emoji: "📔", name: "diary", category: "اشیا" }, { emoji: "📕", name: "red-book", category: "اشیا" }, { emoji: "📖", name: "open-book", category: "اشیا" }, { emoji: "📗", name: "green-book", category: "اشیا" }, { emoji: "📘", name: "blue-book", category: "اشیا" }, { emoji: "📙", name: "yellow-book", category: "اشیا" }, { emoji: "📚", name: "books", category: "اشیا" }, { emoji: "📓", name: "notebook", category: "اشیا" }, { emoji: "📜", name: "scroll", category: "اشیا" }, { emoji: "📝", name: "memo", category: "اشیا" }, { emoji: "📄", name: "page", category: "اشیا" }, { emoji: "📃", name: "page-curl", category: "اشیا" }, { emoji: "📰", name: "newspaper", category: "اشیا" }, { emoji: "📬", name: "mailbox", category: "اشیا" }, { emoji: "💰", name: "money-bag", category: "اشیا" }, { emoji: "💴", name: "yen", category: "اشیا" }, { emoji: "💵", name: "dollar", category: "اشیا" }, { emoji: "💶", name: "euro", category: "اشیا" }, { emoji: "💷", name: "pound", category: "اشیا" }, { emoji: "💸", name: "money", category: "اشیا" }, { emoji: "📮", name: "postbox", category: "اشیا" }, { emoji: "📨", name: "incoming-mail", category: "اشیا" }, { emoji: "📩", name: "mail", category: "اشیا" }, { emoji: "🤃", name: "silly", category: "فعالیت‌ها" }, { emoji: "🤣", name: "crying-laughing", category: "فعالیت‌ها" }, { emoji: "🤪", name: "zany", category: "فعالیت‌ها" }, { emoji: "🤨", name: "squinting", category: "فعالیت‌ها" }, { emoji: "🤓", name: "nerd", category: "فعالیت‌ها" }, { emoji: "🤑", name: "money-face", category: "فعالیت‌ها" }, { emoji: "🤔", name: "thinking", category: "فعالیت‌ها" }, { emoji: "🤥", name: "liar", category: "فعالیت‌ها" }, { emoji: "🤭", name: "gags", category: "فعالیت‌ها" }, { emoji: "🤫", name: "shushing", category: "فعالیت‌ها" }, { emoji: "🤗", name: "hugging", category: "فعالیت‌ها" }, { emoji: "🤠", name: "cowboy", category: "فعالیت‌ها" }, { emoji: "🤯", name: "exploding-head", category: "فعالیت‌ها" }, { emoji: "🤍", name: "white-heart", category: "فعالیت‌ها" }, { emoji: "🌟", name: "glowing-star", category: "فعالیت‌ها" }, { emoji: "🍀", name: "clover", category: "فعالیت‌ها" }, { emoji: "🎯", name: "dart", category: "فعالیت‌ها" }, { emoji: "🏆", name: "trophy", category: "فعالیت‌ها" }, { emoji: "👀", name: "eyes", category: "فعالیت‌ها" }, { emoji: "🤷", name: "shrug", category: "فعالیت‌ها" }, { emoji: "🍅", name: "tomato", category: "فعالیت‌ها" }, { emoji: "🌽", name: "corn", category: "فعالیت‌ها" }, { emoji: "🌮", name: "taco", category: "فعالیت‌ها" }, { emoji: "🌯", name: "burrito", category: "فعالیت‌ها" }, { emoji: "🥯", name: "bagel", category: "فعالیت‌ها" }, { emoji: "🌾", name: "rice", category: "فعالیت‌ها" }, { emoji: "🥄", name: "spoon", category: "فعالیت‌ها" }, { emoji: "🎂", name: "cake", category: "فعالیت‌ها" }, { emoji: "🏍", name: "motorcycle", category: "فعالیت‌ها" }, { emoji: "🎡", name: "ferris-wheel", category: "فعالیت‌ها" }, { emoji: "🎢", name: "roller-coaster", category: "فعالیت‌ها" }, { emoji: "🎠", name: "carousel", category: "فعالیت‌ها" }, { emoji: "🏰", name: "castle", category: "فعالیت‌ها" }, { emoji: "🏯", name: "japanese-castle", category: "فعالیت‌ها" }, { emoji: "🏭", name: "factory", category: "فعالیت‌ها" }, { emoji: "🏠", name: "house", category: "فعالیت‌ها" }, { emoji: "🏢", name: "office", category: "فعالیت‌ها" }, { emoji: "🌉", name: "bridge", category: "فعالیت‌ها" }, { emoji: "⌚", name: "watch", category: "فعالیت‌ها" }, { emoji: "⌨", name: "keyboard", category: "فعالیت‌ها" }, { emoji: "🎥", name: "movie-camera", category: "فعالیت‌ها" }, { emoji: "📡", name: "satellite", category: "فعالیت‌ها" }, { emoji: "📧", name: "email", category: "فعالیت‌ها" }, { emoji: "📦", name: "package", category: "فعالیت‌ها" }, { emoji: "🏷", name: "label", category: "فعالیت‌ها" }, { emoji: "🏀", name: "basketball", category: "فعالیت‌ها" }, { emoji: "🏈", name: "football", category: "فعالیت‌ها" }, { emoji: "🎾", name: "tennis", category: "فعالیت‌ها" }, { emoji: "🏐", name: "volleyball", category: "فعالیت‌ها" }, { emoji: "🏉", name: "rugby", category: "فعالیت‌ها" }, { emoji: "🎱", name: "pool", category: "فعالیت‌ها" }, { emoji: "🎿", name: "ski", category: "فعالیت‌ها" }, { emoji: "🏄", name: "surfer", category: "فعالیت‌ها" }, { emoji: "🏊", name: "swimmer", category: "فعالیت‌ها" }, { emoji: "🥊", name: "boxing-glove", category: "فعالیت‌ها" }, { emoji: "🎽", name: "running-shirt", category: "فعالیت‌ها" }, { emoji: "🏇", name: "horse-racing", category: "فعالیت‌ها" }, { emoji: "🥇", name: "gold-medal", category: "فعالیت‌ها" }, { emoji: "🥈", name: "silver-medal", category: "فعالیت‌ها" }, { emoji: "🥉", name: "bronze-medal", category: "فعالیت‌ها" }, { emoji: "🏅", name: "medal-sports", category: "فعالیت‌ها" }, { emoji: "🎖", name: "medal-military", category: "فعالیت‌ها" }, { emoji: "🎗", name: "ribbon", category: "فعالیت‌ها" }, { emoji: "🎫", name: "ticket", category: "فعالیت‌ها" }, { emoji: "🎪", name: "circus-tent", category: "فعالیت‌ها" }, { emoji: "🎭", name: "performing-arts", category: "فعالیت‌ها" }, { emoji: "🎨", name: "artist", category: "فعالیت‌ها" }, { emoji: "🎬", name: "clapper", category: "فعالیت‌ها" }, { emoji: "🎤", name: "microphone", category: "فعالیت‌ها" }, { emoji: "🎧", name: "headphones", category: "فعالیت‌ها" }, { emoji: "🎼", name: "music", category: "فعالیت‌ها" }, { emoji: "🎹", name: "keyboard-musical", category: "فعالیت‌ها" }, { emoji: "🥁", name: "drum", category: "فعالیت‌ها" }, { emoji: "🎷", name: "saxophone", category: "فعالیت‌ها" }, { emoji: "🎺", name: "trumpet", category: "فعالیت‌ها" }, { emoji: "🎸", name: "guitar", category: "فعالیت‌ها" }, { emoji: "🎻", name: "violin", category: "فعالیت‌ها" }, { emoji: "🎮", name: "game", category: "فعالیت‌ها" }, { emoji: "🎯", name: "game-dart", category: "فعالیت‌ها" }, { emoji: "🎲", name: "dice", category: "فعالیت‌ها" }, { emoji: "🎰", name: "slot", category: "فعالیت‌ها" }, { emoji: "🎳", name: "bowling", category: "فعالیت‌ها" }, { emoji: "🃏", name: "joker", category: "فعالیت‌ها" },];
+
+const EMOJI_NAMES_FA = {
+"adoring": "عاشقانه",
+"aerial-lift": "گوندولا",
+"airplane": "هواپیما",
+"angry": "عصبانی",
+"ant": "مورچه",
+"anxious": "مضطرب",
+"artist": "هنرمند",
+"astonished": "متحیر",
+"bacon": "بیکن",
+"bagel": "باگل",
+"baguette": "باگت",
+"banana": "موز",
+"baseball": "بیسبال",
+"basketball": "بسکتبال",
+"bat": "خفاش",
+"beaming": "لبخند درخشان",
+"bear": "خرس",
+"bed": "تخت",
+"beer": "آبجو",
+"bento": "بن‌تو",
+"bicycle": "دوچرخه",
+"bird": "پرنده",
+"black-heart": "قلب سیاه",
+"blowfish": "ماهی بادکنکی",
+"blue-book": "کتاب آبی",
+"blue-heart": "قلب آبی",
+"blush": "خجالت زده",
+"boar": "خوک وحشی",
+"books": "کتاب‌ها",
+"bowling": "بولینگ",
+"boxing-glove": "دستکش بوکس",
+"bread": "نان",
+"bridge": "پل",
+"broken-heart": "قلب شکسته",
+"bronze-medal": "مدال برنزی",
+"bug": "حشره",
+"bulb": "لامپ",
+"burrito": "بریتو",
+"bus": "اتوبوس",
+"butterfly": "پروانه",
+"cake": "کیک",
+"camera": "دوربین",
+"camera-flash": "دوربین با فلش",
+"candle": "شمع",
+"candy": "شیرینی",
+"car": "ماشین",
+"carousel": "کالسکه‌ی چرخان",
+"carrot": "هویج",
+"castle": "قلعه",
+"cat": "گربه",
+"cd": "سی‌دی",
+"champagne": "شامپاین",
+"cheese": "پنیر",
+"cherries": "گیلاس",
+"chicken": "مرغ",
+"chocolate": "شکلات",
+"circus-tent": "چادر سرک",
+"clap": "دست زدن",
+"clapper": "کلپ‌بورد",
+"clover": "چهاربرگ",
+"cocktail": "کوکتیل",
+"coconut": "نارگیل",
+"coffee": "قهوه",
+"cold-face": "سرزده",
+"collision": "برخورد",
+"confounded": "دردسر کشیده",
+"confused": "کلافه",
+"confused2": "گمگشت",
+"cookie": "بیسکویت",
+"cool": "کول و باوقار",
+"corn": "ذرت",
+"cow": "گاو",
+"cowboy": "کابوی",
+"crab": "خرچنگ",
+"crocodile": "تمساح",
+"croissant": "کروسان",
+"crossed-fingers": "انگشت به رها",
+"crying-laughing": "خنده در اشک",
+"cucumber": "خیار",
+"cupcake": "کاپ‌کیک",
+"curry": "کاره",
+"custard": "کاستارد",
+"cyclist": "دوچرخه سوار",
+"dango": "دائنگو",
+"dart": "پیکان",
+"desktop": "کامپیوتر",
+"diary": "یادداشت روزانه",
+"dice": "تاس",
+"disappointed": "ناامید",
+"dog": "سگ",
+"dog2": "سگ (نسخه دو)",
+"dollar": "دلار",
+"dolphin": "دلفین",
+"doughnut": "دونات",
+"drum": "طبل",
+"duck": "اردک",
+"dvd": "دی‌وی‌دی",
+"eagle": "عقاب",
+"egg": "تخم مرغ",
+"elephant": "فیل",
+"email": "ایمیل",
+"envelope": "پاکت نامه",
+"euro": "یورو",
+"exploding-head": "انفجار سر",
+"expressionless": "بی‌حالت",
+"eyes": "چشم‌ها",
+"factory": "کارخانه",
+"fearful": "ترسیده",
+"ferris-wheel": "چرخ‌فریس",
+"fire": "آتش",
+"fish": "ماهی",
+"fish-cake": "کتلت ماهی",
+"fist": "مشت",
+"floppy": "فلاپی",
+"flushed": "سرخ شده",
+"football": "فوتبال آمریکایی",
+"fork-knife": "چنگال و قاشق",
+"fox": "روباه",
+"fried-egg": "تخم مرغ نیمرو",
+"fried-shrimp": "شیرمنی سرخ",
+"fries": "سیب‌زمینی سوخته",
+"frog": "قورباغه",
+"gags": "دست روی دهان",
+"game": "بازی",
+"game-dart": "پرتاب پیکان",
+"gift-heart": "قلب هدیه",
+"giraffe": "زارعه",
+"glowing-star": "ستاره‌ی درخشان",
+"goat": "بز",
+"gold-medal": "مدال طلایی",
+"golf": "گلف",
+"grapes": "انگور",
+"green-apple": "سیب سبز",
+"green-book": "کتاب سبز",
+"green-heart": "قلب سبز",
+"grimace": "خمیر صورت",
+"grimacing": "غصه",
+"grinning": "خندیدن",
+"growing-heart": "قلب در حال رشد",
+"guitar": "گیتار",
+"hamburger": "همبرگر",
+"hamster": "همستر",
+"headphones": "هدفون",
+"heart-arrow": "قلب با پیکان",
+"heart-eyes": "چشم‌های قلبی",
+"helicopter": "هلیکوپتر",
+"honey": "عسل",
+"honeybee": "زنبور عسل",
+"horns": "نشان وِر",
+"horse": "اسب",
+"horse-racing": "سواری",
+"hot-face": "داغ",
+"house": "خانه",
+"hugging": "در آغوش گرفتن",
+"hundred": "صد",
+"hushed": "ساکت",
+"ice-cream": "بستنی",
+"incoming-mail": "ایمیل ورودی",
+"index-up": "اشاره با انگشت به بالا",
+"innocent": "بی‌گناه",
+"japanese-castle": "قلعه ژاپنی",
+"joker": "جوکر",
+"joy": "شادی",
+"keyboard": "کیبورد",
+"keyboard-musical": "پیانو",
+"kiss": "بوسه",
+"kiss-blush": "بوسه‌ی خجالت‌زده",
+"kiss-face": "لبخند بوسه",
+"kiss-wink": "بوسه و چشمک",
+"kiwi": "کیوی",
+"koala": "کوالا",
+"label": "برچسب",
+"ladybug": "پُرک",
+"laptop": "لپ‌تاپ",
+"laughing": "خنده",
+"lemon": "لیمو",
+"leopard": "پلنگ",
+"liar": "دروغگو",
+"lion": "شیر",
+"lizard": "مارمولک",
+"llama": "لاما",
+"lollipop": "لالی‌پاپ",
+"magnifier-right": "ذره‌بین",
+"mail": "نامه",
+"mailbox": "صندوق پُست",
+"mango": "انبه",
+"medal-military": "نشان نظامی",
+"medal-sports": "مدال ورزشی",
+"meh": "بی‌تفاوت",
+"melon": "خربزه",
+"memo": "یادداشت",
+"microphone": "میکروفن",
+"microscope": "میکروسکوپ",
+"money": "پول",
+"money-bag": "کیسه پول",
+"money-face": "صورت پول",
+"monkey": "میمون",
+"monocle": "نیم‌عینک",
+"moon-cake": "کیک ماه",
+"motorcycle": "موتور",
+"mouse": "موش",
+"mouse-pointer": "نشانگر ماوس",
+"movie-camera": "دوربین فیلم",
+"muscle": "عضو",
+"music": "موسیقی",
+"nerd": "کتاب‌دوست",
+"neutral": "خنثی",
+"newspaper": "روزنامه",
+"notebook": "دفترچه",
+"octopus": "هشت‌پا",
+"office": "دفتر",
+"ok": "اوکی",
+"open-book": "کتاب باز",
+"open-mouth": "دهان باز",
+"orange": "پرتقال",
+"orange-heart": "قلب نارنجی",
+"owl": "جغد",
+"package": "بسته",
+"page": "صفحه",
+"page-curl": "برگ برگردیده",
+"pancakes": "پنکیک",
+"panda": "پاندا",
+"peach": "هلو",
+"pear": "آلو",
+"penguin": "پنگوئن",
+"pensive": "تو فکر",
+"performing-arts": "هنرهای نمایشی",
+"phone": "گوشی",
+"pig": "خوک",
+"pinched-fingers": "انگشتان نزدیک",
+"pineapple": "آناناس",
+"pizza": "پیتزا",
+"pleading": "مظلوم",
+"point-down": "اشاره به پایین",
+"point-left": "اشاره به چپ",
+"point-right": "اشاره به راست",
+"point-up": "اشاره به بالا",
+"pool": "بیلیارد",
+"postbox": "جعبه پُست",
+"pound": "پوند",
+"pray": "دعا",
+"pretzel": "نوش گره",
+"printer": "پرینتر",
+"purple-heart": "قلب بنفش",
+"rabbit": "خرگوش",
+"rabbit2": "خرگوش (نسخه دو)",
+"raccoon": "راسون",
+"radio": "رادیو",
+"raised-fist": "مشت بالاست",
+"raised-hand": "دست بالاست",
+"raise-hands": "دست‌ها بالاست",
+"ramen": "رامن",
+"red-apple": "سیب قرمز",
+"red-book": "کتاب قرمز",
+"red-heart": "قلب قرمز",
+"relieved": "آرامش",
+"rhino": "زیرش",
+"ribbon": "نوار روبان",
+"rice": "برنج",
+"rice-ball": "نوریگی",
+"rocket": "موشک",
+"rock-on": "نشان راک",
+"rofl": "خنده‌ی غلتان",
+"roller-coaster": "اسلاید کوهستان",
+"roll-eyes": "چرخش چشم",
+"rugby": "رگبی",
+"running-shirt": "لباس دو",
+"sailboat": "کشتی بادبانی",
+"sandwich": "ساندویچ",
+"satellite": "ماهواره",
+"saucer": "پرنده فضایی",
+"saxophone": "ساکسفون",
+"scroll": "اسکرول",
+"shamrock": "شامراک",
+"shark": "کوسه",
+"shaved-ice": "یخ ریز شده",
+"ship": "کشتی",
+"shortcake": "کیک کوچک",
+"shrug": "شانه بالا کشیدن",
+"shushing": "ساکت کن",
+"silly": "بامزه",
+"silver-medal": "مدال نقره‌ای",
+"ski": "اسکی",
+"slight-frown": "کمی اخم",
+"slight-smile": "کمی لبخند",
+"slot": "اسلات",
+"smile": "لبخند",
+"smirk": "نیم‌لبخند",
+"snail": "حلزون",
+"snake": "مار",
+"soccer": "فوتبال",
+"spades": "اسپید",
+"spaghetti": "اسپاگتی",
+"sparkles": "جلمه جلمه",
+"sparkling-heart": "قلب درخشان",
+"speedboat": "قایق تندرو",
+"spoon": "قاشق",
+"squid": "ماهی تن",
+"squinting": "چشمک",
+"star": "ستاره",
+"statue-liberty": "مجسمه آزادی",
+"stew": "خورشت",
+"stop": "توقف",
+"strawberry": "توت‌فرنگی",
+"stuck-out-tongue": "زبان در اومده",
+"surfer": "موج‌سوار",
+"sushi": "سوشی",
+"suv": "اس‌وی‌وی",
+"sweat": "عرق",
+"swimmer": "شناگر",
+"taco": "تاکو",
+"taxi": "تاکسی",
+"tea": "چای",
+"telescope": "تلسکوپ",
+"tennis": "تنیس",
+"thinking": "فکر کردن",
+"thumbs-down": "انگشت شست پایین",
+"thumbs-up": "انگشت شست بالا",
+"ticket": "بلیت",
+"tiger": "ببر",
+"tired": "خسته",
+"tomato": "گوجه",
+"tower": "برج",
+"triumph": "پیروزی",
+"trophy": "جام",
+"tropical-drink": "نوشیدنی استوایی",
+"trumpet": "سورنا",
+"turtle": "لاک‌پشت",
+"tv": "تلویزیون",
+"two-hearts": "دو قلب",
+"unamused": "بی‌حوصله",
+"unicorn": "یونیکورن",
+"upside": "برعکس",
+"upside-down": "برعکس سرپا",
+"vhs": "وی‌اچ‌اس",
+"vhs-tape": "نوار وی‌اچ‌اس",
+"video": "ویدیو",
+"violin": "ویولن",
+"volleyball": "والیبال",
+"watch": "ساعت",
+"watermelon": "هندوانه",
+"wave": "سلام با دست",
+"weary": "خسته",
+"whale": "نهنگ",
+"whale2": "نهنگ (نسخه دو)",
+"white-heart": "قلب سفید",
+"wine": "شراب",
+"wink": "چشمک",
+"wink-tongue": "چشمک و زبان",
+"wolf": "گرگ",
+"worried": "نگران",
+"yawning": "خمخواب",
+"yellow-book": "کتاب زرد",
+"yellow-heart": "قلب زرد",
+"yen": "ین",
+"yummy": "خوشمزه",
+"zany": "عجیب و غریب",
+"zap": "برق"
+};
 class oe {
   container;
   searchInput;
@@ -1934,19 +2322,19 @@ class oe {
     this.onSelect = e, this.onClose = t, this.theme = i, this.dark = n, this.container = this.createPickerElement(), this.searchInput = this.container.querySelector(".te-emoji-search"), this.emojiGrid = this.container.querySelector(".te-emoji-grid"), this.setupEvents(), this.loadEmojis();
   }
   async loadEmojis() {
-    this.emojiGrid.textContent = "Loading...";
+    this.emojiGrid.textContent = "در حال بارگذاری…";
     try {
-      const { EMOJI_LIST: e } = await import("./EmojiList-B-C3-zN2.js");
+      const e = EMOJI_LIST;
       this.emojiList = e, this.renderEmojis(this.emojiList);
     } catch (e) {
-      console.error("Failed to load emojis:", e), this.emojiGrid.textContent = "Failed to load";
+      console.error("Failed to load emojis:", e), this.emojiGrid.textContent = "بارگذاری ناموفق";
     }
   }
   createPickerElement() {
     const e = document.createElement("div");
     return e.classList.add("te-emoji-picker"), this.theme && this.applyTheme(e, this.theme), this.dark && e.classList.add("te-dark"), e.innerHTML = `
       <div class="te-emoji-header">
-        <input type="text" class="te-emoji-search" placeholder="Search emoji...">
+        <input type="text" class="te-emoji-search" placeholder="جستجوی ایموجی">
       </div>
       <div class="te-emoji-body">
         <div class="te-emoji-grid"></div>
@@ -1956,7 +2344,7 @@ class oe {
   setupEvents() {
     this.searchInput.addEventListener("mousedown", (t) => t.stopPropagation()), this.searchInput.addEventListener("click", (t) => t.stopPropagation()), this.searchInput.addEventListener("input", () => {
       const t = this.searchInput.value.toLowerCase(), i = this.emojiList.filter(
-        (n) => n.name.toLowerCase().includes(t) || n.category.toLowerCase().includes(t)
+        (n) => n.name.toLowerCase().includes(t) || (EMOJI_NAMES_FA[n.name] || "").toLowerCase().includes(t) || n.category.toLowerCase().includes(t)
       );
       this.renderEmojis(i);
     });
@@ -1967,10 +2355,10 @@ class oe {
   }
   renderEmojis(e) {
     if (this.emojiGrid.innerHTML = "", e.length === 0) {
-      this.emojiGrid.textContent = "No emoji found";
+      this.emojiGrid.textContent = "ایموجی‌ای یافت نشد";
       return;
     }
-    this.searchInput.value.length > 0 ? this.renderGridItems(e) : ["Smileys", "Symbols", "Hands", "Animals", "Food", "Travel", "Objects", "Activities"].forEach((n) => {
+    this.searchInput.value.length > 0 ? this.renderGridItems(e) : ["خنده و احساسات", "نمادها", "دست‌ها", "حیوانات", "غذا و نوشیدنی", "سفر و حمل‌ونقل", "اشیا", "فعالیت‌ها"].forEach((n) => {
       const o = e.filter((s) => s.category === n);
       if (o.length > 0) {
         const s = document.createElement("div");
@@ -1981,7 +2369,7 @@ class oe {
   renderGridItems(e) {
     e.forEach((t) => {
       const i = document.createElement("button");
-      i.type = "button", i.classList.add("te-emoji-item"), i.textContent = t.emoji, i.title = t.name, i.addEventListener("click", () => {
+      i.type = "button", i.classList.add("te-emoji-item"), i.textContent = t.emoji, i.title = EMOJI_NAMES_FA[t.name] || t.name, i.addEventListener("click", () => {
         this.onSelect(t.emoji), this.close();
       }), this.emojiGrid.appendChild(i);
     });
@@ -2042,7 +2430,7 @@ class se {
   }
   createToolbarElement() {
     const e = document.createElement("div");
-    return e.classList.add("te-toolbar"), e.setAttribute("role", "toolbar"), e.setAttribute("aria-label", "Editor Toolbar"), this.statusEl = document.createElement("div"), this.statusEl.classList.add("te-toolbar-status"), this.statusEl.setAttribute("aria-live", "polite"), this.statusEl.setAttribute("aria-atomic", "true"), this.statusEl.style.marginLeft = "auto", this.statusEl.style.display = "flex", this.statusEl.style.alignItems = "center", this.statusEl.style.gap = "6px", this.statusEl.style.fontSize = "12px", this.statusEl.style.color = "var(--te-text-muted)", this.statusEl.style.paddingRight = "12px", this.saveStatusEl = document.createElement("span"), this.charCountEl = document.createElement("span"), this.charCountEl.style.fontWeight = "500", this.statusEl.appendChild(this.charCountEl), this.statusEl.appendChild(this.saveStatusEl), e;
+    return e.classList.add("te-toolbar"), e.setAttribute("role", "toolbar"), e.setAttribute("aria-label", "نوار ابزار ویرایشگر"), this.statusEl = document.createElement("div"), this.statusEl.classList.add("te-toolbar-status"), this.statusEl.setAttribute("aria-live", "polite"), this.statusEl.setAttribute("aria-atomic", "true"), this.statusEl.style.marginLeft = "auto", this.statusEl.style.display = "flex", this.statusEl.style.alignItems = "center", this.statusEl.style.gap = "6px", this.statusEl.style.fontSize = "12px", this.statusEl.style.color = "var(--te-text-muted)", this.statusEl.style.paddingRight = "12px", this.saveStatusEl = document.createElement("span"), this.charCountEl = document.createElement("span"), this.charCountEl.style.fontWeight = "500", this.statusEl.appendChild(this.charCountEl), this.statusEl.appendChild(this.saveStatusEl), e;
   }
   render() {
     const e = this.editor.getOptions().toolbarItems, t = [];
@@ -2100,10 +2488,10 @@ class se {
       }
       if (e.command === "insertImage") {
         this.activeModal && this.activeModal.close(), this.activeModal = new E(
-          "Insert Image",
+          "درج تصویر",
           [
-            { id: "url", label: "Image URL", type: "text", placeholder: "https://example.com/image.jpg" },
-            { id: "file", label: "Or Upload File", type: "file" }
+            { id: "url", label: "آدرس تصویر", type: "text", placeholder: "https://example.com/image.jpg" },
+            { id: "file", label: "یا آپلود فایل", type: "file" }
           ],
           (n) => {
             if (this.savedRange) {
@@ -2135,8 +2523,8 @@ class se {
       }
       if (e.command === "createLink") {
         this.activeModal && this.activeModal.close(), this.activeModal = new E(
-          "Insert Link",
-          [{ id: "url", label: "URL", type: "text", placeholder: "https://example.com" }],
+          "درج پیوند",
+          [{ id: "url", label: "آدرس", type: "text", placeholder: "https://example.com" }],
           (n) => {
             if (this.savedRange) {
               const o = window.getSelection();
@@ -2154,10 +2542,10 @@ class se {
       }
       if (e.command === "insertTable") {
         this.activeModal && this.activeModal.close(), this.activeModal = new E(
-          "Insert Table",
+          "درج جدول",
           [
-            { id: "rows", label: "Rows", type: "number", defaultValue: "3", min: "1" },
-            { id: "cols", label: "Columns", type: "number", defaultValue: "3", min: "1" }
+            { id: "rows", label: "ردیف", type: "number", defaultValue: "3", min: "1" },
+            { id: "cols", label: "ستون", type: "number", defaultValue: "3", min: "1" }
           ],
           (n) => {
             if (this.savedRange) {
@@ -2307,7 +2695,7 @@ class se {
       return;
     }
     const t = this.editor.getCharCount(), i = e.maxCharCount;
-    i ? (this.charCountEl.textContent = `Chars: ${t}/${i}`, t > i ? this.charCountEl.style.color = "#ef4444" : this.charCountEl.style.color = "inherit") : (this.charCountEl.textContent = `Chars: ${t}`, this.charCountEl.style.color = "inherit"), this.charCountEl.textContent && this.saveStatusEl?.textContent ? (this.charCountEl.style.marginRight = "8px", this.charCountEl.style.borderRight = "1px solid var(--te-border-color)", this.charCountEl.style.paddingRight = "8px") : (this.charCountEl.style.marginRight = "0", this.charCountEl.style.borderRight = "none", this.charCountEl.style.paddingRight = "0");
+    i ? (this.charCountEl.textContent = `کاراکتر: ${t}/${i}`, t > i ? this.charCountEl.style.color = "#ef4444" : this.charCountEl.style.color = "inherit") : (this.charCountEl.textContent = `کاراکتر: ${t}`, this.charCountEl.style.color = "inherit"), this.charCountEl.textContent && this.saveStatusEl?.textContent ? (this.charCountEl.style.marginRight = "8px", this.charCountEl.style.borderRight = "1px solid var(--te-border-color)", this.charCountEl.style.paddingRight = "8px") : (this.charCountEl.style.marginRight = "0", this.charCountEl.style.borderRight = "none", this.charCountEl.style.paddingRight = "0");
   }
   destroy() {
     this.editor.el.removeEventListener("keyup", this.boundUpdateActiveStates), this.editor.el.removeEventListener("mouseup", this.boundUpdateActiveStates), this.activePicker && (this.activePicker.close(), this.activePicker = null), this.container.parentNode && this.container.parentNode.removeChild(this.container);
@@ -2319,10 +2707,10 @@ class ae extends ne {
     const i = {
       ...t,
       onSaving: () => {
-        this.toolbar?.updateStatus("Auto saving...", !0), t.onSaving && t.onSaving();
+        this.toolbar?.updateStatus("در حال ذخیره خودکار...", !0), t.onSaving && t.onSaving();
       },
       onSave: (n) => {
-        const o = (/* @__PURE__ */ new Date()).toLocaleString([], {
+        const o = (/* @__PURE__ */ new Date()).toLocaleString("fa", {
           year: "numeric",
           month: "short",
           day: "numeric",
@@ -2330,7 +2718,7 @@ class ae extends ne {
           minute: "2-digit",
           hour12: !0
         });
-        this.toolbar?.updateStatus(`Saved at ${o}`, !1), t.onSave && t.onSave(n);
+        this.toolbar?.updateStatus(`ذخیره شد ${o}`, !1), t.onSave && t.onSave(n);
       }
     };
     super(e, i);
@@ -2341,7 +2729,7 @@ class ae extends ne {
   initializeUI() {
     super.initializeUI(), this.toolbar = new se(this);
     const e = this.options.toolbarPosition || "top";
-    e === "top" ? this.container.insertBefore(this.toolbar.el, this.editableElement) : e === "bottom" ? (this.container.appendChild(this.toolbar.el), this.container.classList.add("te-toolbar-bottom")) : e === "left" ? (this.container.insertBefore(this.toolbar.el, this.editableElement), this.container.classList.add("te-toolbar-left")) : e === "right" ? (this.container.appendChild(this.toolbar.el), this.container.classList.add("te-toolbar-right")) : e === "floating" && this.container.classList.add("te-toolbar-floating"), this.options.showStatus !== !1 && this.toolbar && e !== "floating" && this.toolbar.updateStatus("All changes saved", !1), this.options.showCharCount && this.toolbar.updateMetrics(), this.editableElement.addEventListener("input", () => {
+    e === "top" ? this.container.insertBefore(this.toolbar.el, this.editableElement) : e === "bottom" ? (this.container.appendChild(this.toolbar.el), this.container.classList.add("te-toolbar-bottom")) : e === "left" ? (this.container.insertBefore(this.toolbar.el, this.editableElement), this.container.classList.add("te-toolbar-left")) : e === "right" ? (this.container.appendChild(this.toolbar.el), this.container.classList.add("te-toolbar-right")) : e === "floating" && this.container.classList.add("te-toolbar-floating"), this.options.showStatus !== !1 && this.toolbar && e !== "floating" && this.toolbar.updateStatus("همه تغییرات ذخیره شد", !1), this.options.showCharCount && this.toolbar.updateMetrics(), this.editableElement.addEventListener("input", () => {
       this.toolbar?.updateMetrics();
     }), this.triggerChange();
   }

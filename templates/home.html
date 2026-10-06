@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <section class="home-hero">
-  <h1>بنویس، لینکش را بفرست</h1>
+  <h1>بنویس و با دوستات به اشتراک بذار</h1>
   <p>هر کسی می‌تواند یک بلاگ بنویسد و لینک آن را برای دوستش بفرستد. اگر دوست داری، بلاگت عمومی یا خصوصی باشد.</p>
   {% if not current_user %}
     <a class="btn btn-primary" href="{{ url_for('register') }}">شروع کن</a>
@@ -17,7 +17,7 @@
     {% for b in blogs %}
       <a class="blog-card" href="{{ url_for('view_blog', token=b.token) }}">
         <h3>{{ b.title }}</h3>
-        <p class="blog-card-meta">توسط {{ b.user.username }} &middot; {{ b.created_at.strftime('%Y-%m-%d') }}</p>
+        <p class="blog-card-meta">توسط {{ b.user.name or b.user.username }} &middot; {{ b.created_at.strftime('%Y-%m-%d') }}</p>
       </a>
     {% endfor %}
   </div>

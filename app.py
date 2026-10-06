@@ -47,14 +47,19 @@ def create_app():
             return redirect(url_for("home"))
         if request.method == "POST":
             username = request.form.get("username", "").strip()
+            name = request.form.get("name", "").strip()
             password = request.form.get("password", "")
             confirm = request.form.get("confirm", "")
 
             if not re.fullmatch(r"[\w\-]{3,30}", username):
                 flash("نام کاربری باید ۳ تا ۳۰ کاراکتر (حروف، اعداد، - و _) باشد.", "error")
                 return redirect(url_for("register"))
-            if len(password) < 8:
-                flash("رمز عبور باید حداقل ۸ کاراکتر باشد.", "error")
+            if len(name) < 2:
+                flash("نام را وارد کنید (حداقل ۲ کاراکتر).", "error")
+                return redirect(url_for("register"))
+
+            if len(password) < 6:
+                flash("رمز عبور باید حداقل ۶ کاراکتر باشد.", "error")
                 return redirect(url_for("register"))
             if password != confirm:
                 flash("تکرار رمز عبور با رمز عبور یکسان نیست.", "error")
@@ -65,7 +70,8 @@ def create_app():
 
             salt = secrets.token_hex(16)
             pw_hash = hashlib.sha512((salt + password).encode()).hexdigest()
-            user = User(username=username, salt=salt, password_hash=pw_hash)
+            user = User(username=username, name=name[:50],
+                         salt=salt, password_hash=pw_hash)
             db.session.add(user)
             db.session.commit()
             session["user_id"] = user.id
@@ -175,6 +181,55 @@ def create_app():
             return redirect(url_for("home"))
         return render_template("blog.html", blog=blog, author=author,
                                is_owner=is_owner)
+
+    @app.route("/settings", methods=["GET", "POST"])
+    def settings():
+        if not session.get("user_id"):
+            flash("برای تغییرات باید وارد شوید.", "error")
+            return redirect(url_for("login"))
+        user = User.query.get(session["user_id"])
+
+        if request.method == "POST":
+            which = request.form.get("which")
+            if which == "username":
+                username = request.form.get("username", "").strip()
+                if username == user.username:
+                    flash("نام کاربری تغییر نکرده است.", "error")
+                    return redirect(url_for("settings"))
+                if not re.fullmatch(r"[\w\-]{3,30}", username):
+                    flash("نام کاربری باید ۳ تا ۳۰ کاراکتر (حروف، اعداد، - و _) باشد.", "error")
+                    return redirect(url_for("settings"))
+                if User.query.filter_by(username=username).first():
+                    flash("این نام کاربری قبلاً ثبت شده است.", "error")
+                    return redirect(url_for("settings"))
+                user.username = username
+                db.session.commit()
+                flash("نام کاربری تغییر کرد.", "success")
+
+            elif which == "password":
+                current = request.form.get("current", "")
+                new_password = request.form.get("new", "")
+                confirm = request.form.get("confirm", "")
+                candidate = hashlib.sha512(
+                    (user.salt + current).encode()).hexdigest()
+                if not secrets.compare_digest(candidate, user.password_hash):
+                    flash("رمز عبور فعلی اشتباه است.", "error")
+                    return redirect(url_for("settings"))
+                if len(new_password) < 6:
+                    flash("رمز عبور جدید باید حداقل ۶ کاراکتر باشد.", "error")
+                    return redirect(url_for("settings"))
+                if new_password != confirm:
+                    flash("تکرار رمز عبور با رمز عبور یکسان نیست.", "error")
+                    return redirect(url_for("settings"))
+                user.salt = secrets.token_hex(16)
+                user.password_hash = hashlib.sha512(
+                    (user.salt + new_password).encode()).hexdigest()
+                db.session.commit()
+                flash("رمز عبور تغییر کرد.", "success")
+            else:
+                return redirect(url_for("settings"))
+            return redirect(url_for("settings"))
+        return render_template("settings.html", user=user)
 
     @app.route("/profile")
     def profile():

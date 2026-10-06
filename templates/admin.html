@@ -2,69 +2,73 @@
 {% block title %}پنل ادمین &middot; BlogiShy{% endblock %}
 {% block content %}
 {% if session.get('admin') %}
-<h1>پنل ادمین</h1>
-<div class="admin-actions">
+<div class="admin-head">
+  <h1>پنل ادمین</h1>
   <a class="btn" href="{{ url_for('admin_logout') }}">خروج از پنل</a>
 </div>
 
-<h2>کاربرها ({{ users|length }})</h2>
-<div class="table-wrap">
-  <table class="admin-table">
-    <thead>
-      <tr><th>شناسه</th><th>نام کاربری</th><th>تعداد بلاگ</th><th>عملیات</th></tr>
-    </thead>
-    <tbody>
-      {% for u in users %}
-      <tr>
-        <td>{{ u.id }}</td>
-        <td dir="ltr">{{ u.username }}</td>
-        <td>{{ u.blogs.count() }}</td>
-        <td>
-          <form method="post" action="{{ url_for('admin_delete_user', user_id=u.id) }}" onsubmit="return confirm('کاربر «{{ u.username }}» و همه بلاگ‌هایش حذف شود؟')">
-            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            <button class="btn btn-danger" type="submit">حذف کاربر</button>
-          </form>
-        </td>
-      </tr>
-      {% else %}
-      <tr><td colspan="4" class="muted">کاربری وجود ندارد.</td></tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
-
-<h2>بلاگ‌ها ({{ blogs|length }})</h2>
-<div class="table-wrap">
-  <table class="admin-table">
-    <thead>
-      <tr><th>شناسه</th><th>عنوان</th><th>نویسنده</th><th>وضعیت</th><th>عملیات</th></tr>
-    </thead>
-    <tbody>
-      {% for b in blogs %}
-      <tr>
-        <td>{{ b.id }}</td>
-        <td>{{ b.title }}</td>
-        <td dir="ltr">{{ b.user.username if b.user else '-' }}</td>
-        <td>{% if b.is_public %}<span class="badge badge-public">عمومی</span>{% else %}<span class="badge badge-private">خصوصی</span>{% endif %}</td>
-        <td>
-          <div class="row-actions">
-            <a class="btn btn-sm" href="{{ url_for('view_blog', token=b.token) }}">بازدید</a>
-            <form method="post" action="{{ url_for('admin_toggle_blog', blog_id=b.id) }}">
-              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-              <button class="btn btn-sm" type="submit">{% if b.is_public %}خصوصی کن{% else %}عمومی کن{% endif %}</button>
-            </form>
-            <form method="post" action="{{ url_for('admin_delete_blog', blog_id=b.id) }}" onsubmit="return confirm('این بلاگ حذف شود؟')">
+<div class="admin-section">
+  <h2>کاربرها <span class="count">{{ users|length }}</span></h2>
+  <div class="table-wrap">
+    <table class="admin-table">
+      <thead>
+        <tr><th>شناسه</th><th>نام کاربری</th><th>تعداد بلاگ</th><th>عملیات</th></tr>
+      </thead>
+      <tbody>
+        {% for u in users %}
+        <tr>
+          <td class="num">{{ u.id }}</td>
+          <td dir="ltr">{{ u.username }}</td>
+          <td class="num">{{ u.blogs.count() }}</td>
+          <td>
+            <form method="post" action="{{ url_for('admin_delete_user', user_id=u.id) }}" onsubmit="return confirm('کاربر «{{ u.username }}» و همه بلاگ‌هایش حذف شود؟')">
               <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
               <button class="btn btn-danger btn-sm" type="submit">حذف</button>
             </form>
-          </div>
-        </td>
-      </tr>
-      {% else %}
-      <tr><td colspan="5" class="muted">بلاگی وجود ندارد.</td></tr>
-      {% endfor %}
-    </tbody>
-  </table>
+          </td>
+        </tr>
+        {% else %}
+        <tr><td colspan="4" class="empty">کاربری وجود ندارد.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="admin-section">
+  <h2>بلاگ‌ها <span class="count">{{ blogs|length }}</span></h2>
+  <div class="table-wrap">
+    <table class="admin-table">
+      <thead>
+        <tr><th>شناسه</th><th>عنوان</th><th>نویسنده</th><th>وضعیت</th><th>عملیات</th></tr>
+      </thead>
+      <tbody>
+        {% for b in blogs %}
+        <tr>
+          <td class="num">{{ b.id }}</td>
+          <td>{{ b.title }}</td>
+          <td dir="ltr">{{ b.user.username if b.user else '-' }}</td>
+          <td>{% if b.is_public %}<span class="badge badge-public">عمومی</span>{% else %}<span class="badge badge-private">خصوصی</span>{% endif %}</td>
+          <td>
+            <div class="row-actions">
+              <a class="btn btn-sm" href="{{ url_for('view_blog', token=b.token) }}">بازدید</a>
+              <form method="post" action="{{ url_for('admin_toggle_blog', blog_id=b.id) }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button class="btn btn-sm" type="submit">{% if b.is_public %}خصوصی کن{% else %}عمومی کن{% endif %}</button>
+              </form>
+              <form method="post" action="{{ url_for('admin_delete_blog', blog_id=b.id) }}" onsubmit="return confirm('این بلاگ حذف شود؟')">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button class="btn btn-danger btn-sm" type="submit">حذف</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        {% else %}
+        <tr><td colspan="5" class="empty">بلاگی وجود ندارد.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </div>
 {% else %}
 <div class="form-card">
@@ -73,11 +77,11 @@
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <div class="field">
       <label for="admin_username">نام کاربری ادمین</label>
-      <input type="text" id="admin_username" name="admin_username" required>
+      <input type="text" id="admin_username" name="admin_username" required placeholder="نام کاربری ادمین">
     </div>
     <div class="field">
       <label for="admin_password">رمز عبور ادمین</label>
-      <input type="password" id="admin_password" name="admin_password" required>
+      <input type="password" id="admin_password" name="admin_password" required placeholder="رمز عبور ادمین">
     </div>
     <button type="submit" class="btn btn-primary btn-block">ورود</button>
   </form>

@@ -6,7 +6,7 @@ const bodyField = document.getElementById("body");
 const initialHTML = bodyField.value;
 
 const editor = new InkflowEditor(container, {
-  dark: true,
+  dark: false,
   showCharCount: true,
   maxCharCount: 20000,
   placeholder: "اینجا شروع به نوشتن کن…",

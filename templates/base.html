@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% block title %}BlogiShy{% endblock %}</title>
 <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icon.png') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/inkflow.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/inkflow.css', v='15') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/app.css', v='15') }}">
 </head>
 <body>
 <header class="site-header">
@@ -14,11 +14,17 @@
     <img src="{{ url_for('static', filename='images/icon.png') }}" alt="logo">
     <span>BlogiShy</span>
   </a>
-  <nav class="site-nav">
+  <button class="nav-toggle" type="button" aria-label="باز و بسته کردن منو" aria-expanded="false" aria-controls="site-nav">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <nav class="site-nav" id="site-nav">
     <a href="{{ url_for('home') }}">خانه</a>
     {% if current_user %}
       <a href="{{ url_for('write') }}">نوشتن بلاگ</a>
       <a href="{{ url_for('profile') }}">بلاگ‌های من</a>
+      <a href="{{ url_for('settings') }}">تنظیمات</a>
       {% if session.get('admin') %}
         <a class="nav-admin" href="{{ url_for('admin') }}">پنل ادمین</a>
       {% endif %}
@@ -39,10 +45,40 @@
   {% block content %}{% endblock %}
 </main>
 
-<footer class="site-footer">
-  <p>BlogiShy &middot; بنویس، لینکش را بفرست.</p>
-</footer>
-
 {% block scripts %}{% endblock %}
+<script>
+(function () {
+  var btn = document.querySelector(".nav-toggle");
+  var nav = document.getElementById("site-nav");
+  if (!btn || !nav) return;
+  btn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    var open = nav.classList.toggle("open");
+    btn.classList.toggle("open", open);
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  document.addEventListener("click", function (e) {
+    if (!nav.classList.contains("open")) return;
+    if (nav.contains(e.target) || btn.contains(e.target)) return;
+    nav.classList.remove("open");
+    btn.classList.remove("open");
+    btn.setAttribute("aria-expanded", "false");
+  });
+  nav.addEventListener("click", function (e) {
+    if (e.target.closest("a")) {
+      nav.classList.remove("open");
+      btn.classList.remove("open");
+      btn.setAttribute("aria-expanded", "false");
+    }
+  });
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 720) {
+      nav.classList.remove("open");
+      btn.classList.remove("open");
+      btn.setAttribute("aria-expanded", "false");
+    }
+  });
+})();
+</script>
 </body>
 </html>

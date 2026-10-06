@@ -6,16 +6,20 @@
   <form method="post">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <div class="field">
+      <label for="name">نام</label>
+      <input type="text" id="name" name="name" required minlength="2" maxlength="50" placeholder="مثلا: علیرضا">
+    </div>
+    <div class="field">
       <label for="username">نام کاربری</label>
       <input type="text" id="username" name="username" required pattern="[\w\-]{3,30}" minlength="3" maxlength="30" placeholder="مثلا: ali">
     </div>
     <div class="field">
       <label for="password">رمز عبور</label>
-      <input type="password" id="password" name="password" required minlength="8" placeholder="حداقل ۸ کاراکتر">
+      <input type="password" id="password" name="password" required minlength="6" placeholder="حداقل ۶ کاراکتر">
     </div>
     <div class="field">
       <label for="confirm">تکرار رمز عبور</label>
-      <input type="password" id="confirm" name="confirm" required>
+      <input type="password" id="confirm" name="confirm" required placeholder="رمز عبور را دوباره وارد کنید">
     </div>
     <button type="submit" class="btn btn-primary btn-block">ثبت نام</button>
   </form>

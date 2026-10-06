@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}تنظیمات &middot; BlogiShy{% endblock %}
+{% block content %}
+<h1 class="center">تنظیمات حساب</h1>
+<div class="settings-grid">
+  <div class="form-card">
+    <h2>نام کاربری</h2>
+    <p class="muted">نام کاربری فعلی: <strong>{{ user.username }}</strong></p>
+    <form method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <input type="hidden" name="which" value="username">
+      <div class="field">
+        <label for="username">نام کاربری جدید</label>
+        <input type="text" id="username" name="username" required pattern="[\w\-]{3,30}" minlength="3" maxlength="30" value="{{ user.username }}" placeholder="مثلا: ali">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">تغییر نام کاربری</button>
+    </form>
+  </div>
+  <div class="form-card">
+    <h2>رمز عبور</h2>
+    <p class="muted">رمز عبور فعلی را وارد کنید و یک رمز جدید انتخاب کنید.</p>
+    <form method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <input type="hidden" name="which" value="password">
+      <div class="field">
+        <label for="current">رمز عبور فعلی</label>
+        <input type="password" id="current" name="current" required placeholder="رمز فعلی">
+      </div>
+      <div class="field">
+        <label for="new">رمز عبور جدید</label>
+        <input type="password" id="new" name="new" required minlength="6" placeholder="حداقل ۶ کاراکتر">
+      </div>
+      <div class="field">
+        <label for="confirm">تکرار رمز جدید</label>
+        <input type="password" id="confirm" name="confirm" required placeholder="رمز جدید را دوباره وارد کنید">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">تغییر رمز عبور</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

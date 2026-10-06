@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}بلاگ‌های من &middot; BlogiShy{% endblock %}
 {% block content %}
-<h1>بلاگ‌های <span style="color:var(--sky)">{{ user.username }}</span></h1>
+<h1>بلاگ‌های <span style="color:var(--sky)">{{ user.name or user.username }}</span></h1>
 <a class="btn btn-primary" href="{{ url_for('write') }}" style="margin-top:12px;display:inline-block">نوشتن بلاگ جدید</a>
 {% if blogs %}
 <div class="profile-list">
