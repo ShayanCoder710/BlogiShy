@@ -499,9 +499,9 @@ class E {
     }), i.appendChild(o);
     const s = document.createElement("div");
     s.classList.add("te-modal-footer");
-    const r = document.createElement("button");
+    const r = document.createElement("button");r.type="button";
     r.classList.add("te-modal-btn", "te-modal-btn-cancel"), r.textContent = "انصراف";
-    const l = document.createElement("button");
+    const l = document.createElement("button");l.type="button";
     return l.classList.add("te-modal-btn", "te-modal-btn-confirm"), l.textContent = "درج", s.appendChild(r), s.appendChild(l), i.appendChild(s), i;
   }
   setupEvents() {
@@ -579,7 +579,7 @@ class ie {
         l.className = "te-floating-divider", e.appendChild(l);
         return;
       }
-      const r = document.createElement("button");
+      const r = document.createElement("button");r.type="button";
       r.className = "te-floating-btn", r.title = s.title, r.innerHTML = s.icon || s.title, r.onclick = (l) => {
         l.preventDefault(), l.stopPropagation();
         const c = window.getSelection();
@@ -2368,7 +2368,7 @@ class oe {
   }
   renderGridItems(e) {
     e.forEach((t) => {
-      const i = document.createElement("button");
+      const i = document.createElement("button");i.type="button";
       i.type = "button", i.classList.add("te-emoji-item"), i.textContent = t.emoji, i.title = EMOJI_NAMES_FA[t.name] || t.name, i.addEventListener("click", () => {
         this.onSelect(t.emoji), this.close();
       }), this.emojiGrid.appendChild(i);
@@ -2460,7 +2460,7 @@ class se {
     }), this.editor.getOptions().showStatus !== !1 && this.container.appendChild(this.statusEl), this.editor.el.addEventListener("keyup", this.boundUpdateActiveStates), this.editor.el.addEventListener("mouseup", this.boundUpdateActiveStates);
   }
   renderButton(e) {
-    const t = document.createElement("button");
+    const t = document.createElement("button");t.type="button";
     t.classList.add("te-button"), t.setAttribute("aria-label", e.title), t.innerHTML = e.icon || "", t.title = e.title, this.itemElements.set(e, t), t.addEventListener("mousedown", (i) => {
       if (i.preventDefault(), e.command === "createLink" || e.command === "insertTable" || e.command === "insertImage" || e.command === "insertEmoji") {
         const n = window.getSelection();
