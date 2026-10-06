@@ -35,6 +35,10 @@ def create_app():
                 session.pop("user_id", None)
         return {"current_user": user}
 
+    @app.template_filter("fa")
+    def fa_digits(value):
+        return str(value).translate(str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹"))
+
     @app.after_request
     def no_cache(response):
         if response.content_type and ("text/html" in response.content_type or "css" in response.content_type or "javascript" in response.content_type):

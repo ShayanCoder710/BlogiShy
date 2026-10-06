@@ -10,7 +10,7 @@
     <div>
       <h3>{{ b.title }}</h3>
       <p class="meta">
-        {% if b.is_public %}عمومی{% else %}خصوصی{% endif %} &middot; {{ b.created_at.strftime('%Y-%m-%d') }}
+        {% if b.is_public %}عمومی{% else %}خصوصی{% endif %} &middot; {{ b.created_at.strftime('%Y-%m-%d') | fa }}
       </p>
     </div>
     <div class="actions">

@@ -8,7 +8,7 @@
 </div>
 
 <div class="admin-section">
-  <h2>کاربرها <span class="count">{{ users|length }}</span></h2>
+  <h2>کاربرها <span class="count">{{ users|length | fa }}</span></h2>
   <div class="table-wrap">
     <table class="admin-table">
       <thead>
@@ -17,9 +17,9 @@
       <tbody>
         {% for u in users %}
         <tr>
-          <td class="num">{{ u.id }}</td>
+          <td class="num">{{ u.id | fa }}</td>
           <td dir="ltr">{{ u.username }}</td>
-          <td class="num">{{ u.blogs.count() }}</td>
+          <td class="num">{{ u.blogs.count() | fa }}</td>
           <td>
             <form method="post" action="{{ url_for('admin_delete_user', user_id=u.id) }}" onsubmit="return confirm('کاربر «{{ u.username }}» و همه بلاگ‌هایش حذف شود؟')">
               <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
@@ -36,7 +36,7 @@
 </div>
 
 <div class="admin-section">
-  <h2>بلاگ‌ها <span class="count">{{ blogs|length }}</span></h2>
+  <h2>بلاگ‌ها <span class="count">{{ blogs|length | fa }}</span></h2>
   <div class="table-wrap">
     <table class="admin-table">
       <thead>
@@ -45,7 +45,7 @@
       <tbody>
         {% for b in blogs %}
         <tr>
-          <td class="num">{{ b.id }}</td>
+          <td class="num">{{ b.id | fa }}</td>
           <td>{{ b.title }}</td>
           <td dir="ltr">{{ b.user.username if b.user else '-' }}</td>
           <td>{% if b.is_public %}<span class="badge badge-public">عمومی</span>{% else %}<span class="badge badge-private">خصوصی</span>{% endif %}</td>
