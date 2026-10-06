@@ -100,6 +100,7 @@ def create_app():
         if request.method == "POST":
             username = request.form.get("username", "").strip()
             name = request.form.get("name", "").strip()
+            last_name = request.form.get("last_name", "").strip()
             password = request.form.get("password", "")
             confirm = request.form.get("confirm", "")
 
@@ -123,7 +124,8 @@ def create_app():
             salt = secrets.token_hex(16)
             pw_hash = hashlib.sha512((salt + password).encode()).hexdigest()
             user = User(username=username, name=name[:50],
-                         salt=salt, password_hash=pw_hash)
+                        last_name=last_name[:50] or None,
+                        salt=salt, password_hash=pw_hash)
             db.session.add(user)
             db.session.commit()
             session["user_id"] = user.id

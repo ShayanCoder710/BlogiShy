@@ -18,7 +18,7 @@
       <a class="blog-card" href="{{ url_for('view_blog', token=b.token) }}">
         {% if b.cover %}<img class="blog-card-cover" src="{{ url_for('cover', name=b.cover) }}" alt="">{% endif %}
         <h3>{{ b.title }}</h3>
-        <p class="blog-card-meta">توسط {{ b.user.name or b.user.username }} &middot; {{ b.created_at.strftime('%Y-%m-%d') | fa }}</p>
+        <p class="blog-card-meta">توسط {{ b.user.display_name }} &middot; {{ b.created_at.strftime('%Y-%m-%d') | fa }}</p>
       </a>
     {% endfor %}
   </div>
