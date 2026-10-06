@@ -7,6 +7,7 @@
 <div class="profile-list">
   {% for b in blogs %}
   <div class="profile-item">
+    {% if b.cover %}<img class="profile-cover" src="{{ url_for('cover', name=b.cover) }}" alt="">{% endif %}
     <div>
       <h3>{{ b.title }}</h3>
       <p class="meta">

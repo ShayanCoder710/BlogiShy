@@ -15,7 +15,7 @@
 </div>
 {% else %}
 {% if blog %}<h1>ویرایش بلاگ</h1>{% else %}<h1>نوشتن بلاگ</h1>{% endif %}
-<form class="write-form" method="post"
+<form class="write-form" method="post" enctype="multipart/form-data"
       {% if blog %}action="{{ url_for('edit_blog', blog_id=blog.id) }}"{% endif %}>
   <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
   <div class="field">
@@ -23,6 +23,21 @@
     <input type="text" id="title" name="title" maxlength="200" required
            {% if blog %}value="{{ blog.title }}"{% endif %}
            placeholder="عنوان بلاگ">
+  </div>
+  <div class="field">
+    <label for="cover">عکس کاور <span class="hint-inline">(اختیاری)</span></label>
+    <input type="file" id="cover" name="cover" accept="image/*" class="cover-input">
+    <p class="cover-hint">اندازهٔ پیشنهادی ۱۶:۹ است؛ اگر عکس دیگری بگذاری، خودکار به ۱۶:۹ تبدیل می‌شود.</p>
+    <div class="cover-preview" id="cover-preview" hidden>
+      <img id="cover-preview-img" alt="پیش‌نمایش کاور">
+      <label class="cover-remove">
+        <input type="checkbox" name="remove_cover" id="remove-cover" hidden>
+        حذف عکس
+      </label>
+    </div>
+    {% if blog and blog.cover %}
+      <input type="hidden" id="existing-cover" value="{{ blog.cover }}">
+    {% endif %}
   </div>
   <div class="visibility-row">
     <label><input type="radio" name="visibility" value="private"
@@ -32,7 +47,9 @@
   </div>
   <div class="editor-wrap"><div id="editor"></div></div>
   <input type="hidden" id="body" name="body" value="{{ blog.body if blog else '' }}">
-  <button type="submit" class="btn btn-primary">{% if blog %}ذخیره تغییرات{% else %}بلاگ را بساز{% endif %}</button>
+  <button type="submit" class="btn btn-primary btn-block">
+    {% if blog %}ذخیرهٔ تغییرات{% else %}بلاگ را بساز{% endif %}
+  </button>
 </form>
 {% endif %}
 {% endblock %}
@@ -54,5 +71,49 @@ document.getElementById('copy-btn').addEventListener('click', function () {
 </script>
 {% else %}
 <script type="module" src="{{ url_for('static', filename='js/editor-setup.mjs', v='15') }}"></script>
+<script>
+(function () {
+  var fileInput = document.getElementById('cover');
+  var preview = document.getElementById('cover-preview');
+  var img = document.getElementById('cover-preview-img');
+  var removeCheck = document.getElementById('remove-cover');
+  var existing = document.getElementById('existing-cover');
+  if (!fileInput || !preview) return;
+
+  function crop169(source) {
+    var sw = source.naturalWidth, sh = source.naturalHeight;
+    var cw = sw, ch = sh;
+    if (sw / sh > 16 / 9) { cw = sh * 16 / 9; } else { ch = sw * 9 / 16; }
+    var sx = (sw - cw) / 2, sy = (sh - ch) / 2;
+    var c = document.createElement('canvas');
+    c.width = 1280; c.height = 720;
+    c.getContext('2d').drawImage(source, sx, sy, cw, ch, 0, 0, 1280, 720);
+    return c.toDataURL('image/jpeg', 0.85);
+  }
+
+  fileInput.addEventListener('change', function () {
+    if (fileInput.files.length) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        var im = new Image();
+        im.onload = function () {
+          img.src = crop169(im);
+          preview.hidden = false;
+          removeCheck.checked = false;
+        };
+        im.src = e.target.result;
+      };
+      reader.readAsDataURL(fileInput.files[0]);
+    } else {
+      preview.hidden = true;
+    }
+  });
+
+  if (existing && existing.value) {
+    img.src = '/covers/' + existing.value;
+    preview.hidden = false;
+  }
+})();
+</script>
 {% endif %}
 {% endblock %}

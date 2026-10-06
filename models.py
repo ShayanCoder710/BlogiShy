@@ -25,5 +25,6 @@ class Blog(db.Model):
     body = db.Column(db.Text, nullable=False)
     token = db.Column(db.String(64), unique=True, nullable=False, index=True)
     is_public = db.Column(db.Boolean, default=False, nullable=False)
+    cover = db.Column(db.String(255), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)

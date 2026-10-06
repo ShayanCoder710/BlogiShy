@@ -1,13 +1,16 @@
 import hashlib
+import os
 import secrets
 import re
+import uuid
 from datetime import timedelta
 
 from flask import (Flask, abort, flash, redirect, render_template,
-                   request, session, url_for)
+                   request, send_from_directory, session, url_for)
 
 from config import ADMIN_PASSWORD, ADMIN_USERNAME, COOKIE_DAYS, MYSQL_CONFIG, SECRET_KEY
 from extensions import csrf, db
+from PIL import Image, ImageOps
 
 
 def create_app():
@@ -47,11 +50,48 @@ def create_app():
             response.headers["Expires"] = "0"
         return response
 
+    COVER_DIR = os.path.join(app.static_folder, "covers")
+    os.makedirs(COVER_DIR, exist_ok=True)
+
+    def crop_16_9(img):
+        w, h = img.size
+        target = 16 / 9
+        if w / h > target:
+            new_w = int(h * target)
+            x = (w - new_w) // 2
+            img = img.crop((x, 0, x + new_w, h))
+        else:
+            new_h = int(w / target)
+            y = (h - new_h) // 2
+            img = img.crop((0, y, w, y + new_h))
+        return img.resize((1280, 720), Image.LANCZOS)
+
+    def save_cover_file(cover):
+        try:
+            img = Image.open(cover.stream)
+            img = ImageOps.exif_transpose(img)
+            img = crop_16_9(img.convert("RGB"))
+            name = f"{uuid.uuid4().hex}.jpg"
+            img.save(os.path.join(COVER_DIR, name), "JPEG", quality=85, optimize=True)
+            return name
+        except Exception:
+            return None
+
+    def remove_cover_file(filename):
+        if filename:
+            path = os.path.join(COVER_DIR, os.path.basename(filename))
+            if os.path.exists(path):
+                os.remove(path)
+
     @app.route("/")
     def home():
         blogs = Blog.query.filter_by(is_public=True)\
             .order_by(Blog.created_at.desc()).all()
         return render_template("home.html", blogs=blogs)
+
+    @app.route("/covers/<path:name>")
+    def cover(name):
+        return send_from_directory(COVER_DIR, os.path.basename(name))
 
     @app.route("/register", methods=["GET", "POST"])
     def register():
@@ -131,6 +171,7 @@ def create_app():
             title = request.form.get("title", "").strip()
             body = request.form.get("body", "").strip()
             is_public = request.form.get("visibility") == "public"
+            cover_file = request.files.get("cover")
 
             if not title:
                 flash("عنوان بلاگ را وارد کنید.", "error")
@@ -142,6 +183,8 @@ def create_app():
             token = secrets.token_urlsafe(24)
             blog = Blog(title=title, body=body, token=token,
                        is_public=is_public, user_id=user.id)
+            if cover_file and cover_file.filename:
+                blog.cover = save_cover_file(cover_file)
             db.session.add(blog)
             db.session.commit()
 
@@ -164,6 +207,8 @@ def create_app():
             title = request.form.get("title", "").strip()
             body = request.form.get("body", "").strip()
             is_public = request.form.get("visibility") == "public"
+            cover_file = request.files.get("cover")
+            remove_cover = request.form.get("remove_cover") == "1"
 
             if not title:
                 flash("عنوان بلاگ را وارد کنید.", "error")
@@ -175,6 +220,14 @@ def create_app():
             blog.title = title
             blog.body = body
             blog.is_public = is_public
+            if cover_file and cover_file.filename:
+                new_cover = save_cover_file(cover_file)
+                if new_cover:
+                    remove_cover_file(blog.cover)
+                    blog.cover = new_cover
+            elif remove_cover:
+                remove_cover_file(blog.cover)
+                blog.cover = None
             db.session.commit()
             flash("بلاگ به روز شد.", "success")
             return redirect(url_for("profile"))
@@ -260,6 +313,7 @@ def create_app():
         blog = Blog.query.get(blog_id)
         if blog is None or blog.user_id != session["user_id"]:
             abort(404)
+        remove_cover_file(blog.cover)
         db.session.delete(blog)
         db.session.commit()
         flash("بلاگ حذف شد.", "success")
@@ -308,6 +362,8 @@ def create_app():
         user = User.query.get(user_id)
         if user is None:
             abort(404)
+        for b in user.blogs.all():
+            remove_cover_file(b.cover)
         db.session.delete(user)
         db.session.commit()
         flash("کاربر و بلاگ‌هایش حذف شد.", "success")
@@ -320,6 +376,7 @@ def create_app():
         blog = Blog.query.get(blog_id)
         if blog is None:
             abort(404)
+        remove_cover_file(blog.cover)
         db.session.delete(blog)
         db.session.commit()
         flash("بلاگ حذف شد.", "success")

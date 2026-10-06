@@ -2,6 +2,7 @@
 {% block title %}{{ blog.title }} &middot; BlogiShy{% endblock %}
 {% block content %}
 <article class="blog-view">
+  {% if blog.cover %}<img class="blog-cover" src="{{ url_for('cover', name=blog.cover) }}" alt="عکس کاور {{ blog.title }}">{% endif %}
   <h1>{{ blog.title }}</h1>
   <p class="blog-meta">
     {% if blog.is_public %}<span class="badge badge-public">عمومی</span>{% else %}<span class="badge badge-private">خصوصی</span>{% endif %}
