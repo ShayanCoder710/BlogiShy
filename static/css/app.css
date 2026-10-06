@@ -680,6 +680,7 @@ h2 { font-size: 1.3rem; font-weight: 800; }
 .table-wrap::-webkit-scrollbar-thumb:hover { background: var(--sky); }
 .admin-table {
   width: 100%;
+  min-width: 640px;
   border-collapse: collapse;
   font-size: 0.9rem;
 }
@@ -712,12 +713,14 @@ h2 { font-size: 1.3rem; font-weight: 800; }
 .row-actions {
   display: flex;
   gap: 6px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
   align-items: center;
 }
 .admin-table .btn-sm {
   min-width: 84px;
   text-align: center;
+  white-space: nowrap;
 }
 .btn-sm {
   padding: 6px 12px;
