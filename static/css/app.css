@@ -125,8 +125,6 @@ a:hover { text-decoration: underline; }
   background: var(--panel-2);
   text-decoration: none;
 }
-.nav-admin { color: var(--sky); border-color: var(--border); }
-.nav-admin:hover { color: var(--sky); background: var(--sky-soft); }
 @media (max-width: 720px) {
   .nav-toggle {
     display: inline-flex;
@@ -185,8 +183,6 @@ a:hover { text-decoration: underline; }
     border: 1px solid var(--border-soft);
   }
   .site-nav a:hover { background: var(--panel-2); }
-  .nav-admin { border-color: transparent; }
-  .nav-admin:hover { background: var(--sky-soft); }
 }
 .site-main {
   flex: 1;

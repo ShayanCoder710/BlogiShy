@@ -25,9 +25,6 @@
       <a href="{{ url_for('write') }}">نوشتن بلاگ</a>
       <a href="{{ url_for('profile') }}">بلاگ‌های من</a>
       <a href="{{ url_for('settings') }}">تنظیمات</a>
-      {% if session.get('admin') %}
-        <a class="nav-admin" href="{{ url_for('admin') }}">پنل ادمین</a>
-      {% endif %}
       <a href="{{ url_for('logout') }}">خروج</a>
     {% else %}
       <a href="{{ url_for('register') }}">ثبت نام</a>
