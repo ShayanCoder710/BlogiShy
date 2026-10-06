@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}BlogiShy{% endblock %}</title>
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icon.png') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/inkflow.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="{{ url_for('home') }}">
+    <img src="{{ url_for('static', filename='images/icon.png') }}" alt="logo">
+    <span>BlogiShy</span>
+  </a>
+  <nav class="site-nav">
+    <a href="{{ url_for('home') }}">خانه</a>
+    {% if current_user %}
+      <a href="{{ url_for('write') }}">نوشتن بلاگ</a>
+      <a href="{{ url_for('profile') }}">بلاگ‌های من</a>
+      {% if session.get('admin') %}
+        <a class="nav-admin" href="{{ url_for('admin') }}">پنل ادمین</a>
+      {% endif %}
+      <a href="{{ url_for('logout') }}">خروج</a>
+    {% else %}
+      <a href="{{ url_for('register') }}">ثبت نام</a>
+      <a href="{{ url_for('login') }}">ورود</a>
+    {% endif %}
+  </nav>
+</header>
+
+<main class="site-main">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for cat, msg in messages %}
+      <div class="flash flash-{{ cat }}">{{ msg }}</div>
+    {% endfor %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <p>BlogiShy &middot; بنویس، لینکش را بفرست.</p>
+</footer>
+
+{% block scripts %}{% endblock %}
+</body>
+</html>

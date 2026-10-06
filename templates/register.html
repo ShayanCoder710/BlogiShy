@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}ثبت نام &middot; BlogiShy{% endblock %}
+{% block content %}
+<div class="form-card">
+  <h1>ساخت حساب کاربری</h1>
+  <form method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="field">
+      <label for="username">نام کاربری</label>
+      <input type="text" id="username" name="username" required pattern="[\w\-]{3,30}" minlength="3" maxlength="30" placeholder="مثلا: ali">
+    </div>
+    <div class="field">
+      <label for="password">رمز عبور</label>
+      <input type="password" id="password" name="password" required minlength="8" placeholder="حداقل ۸ کاراکتر">
+    </div>
+    <div class="field">
+      <label for="confirm">تکرار رمز عبور</label>
+      <input type="password" id="confirm" name="confirm" required>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">ثبت نام</button>
+  </form>
+  <p class="muted center">حساب داری؟ <a href="{{ url_for('login') }}">وارد شو</a></p>
+</div>
+{% endblock %}

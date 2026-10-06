@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}{% if blog and blog.url %}بلاگ شما &middot; BlogiShy{% elif blog %}ویرایش بلاگ &middot; BlogiShy{% else %}نوشتن بلاگ &middot; BlogiShy{% endif %}{% endblock %}
+{% block content %}
+{% if blog and blog.url %}
+<div class="share-box">
+  <h1>بلاگ شما منتشر شد</h1>
+  <h2>لینک این بلاگ</h2>
+  <div class="copy-row">
+    <input type="text" id="blog-url" value="{{ blog.url }}" readonly dir="ltr">
+    <button class="btn btn-primary" id="copy-btn" type="button">کپی</button>
+  </div>
+  <p class="muted">این لینک را برای دوستتان بفرستید تا بلاگ شما را ببیند.</p>
+  <a class="btn" href="{{ url_for('view_blog', token=blog.token) }}">پیش‌نظر</a>
+  <a class="btn" href="{{ url_for('profile') }}">بلاگ‌های من</a>
+</div>
+{% else %}
+{% if blog %}<h1>ویرایش بلاگ</h1>{% else %}<h1>نوشتن بلاگ</h1>{% endif %}
+<form class="write-form" method="post"
+      {% if blog %}action="{{ url_for('edit_blog', blog_id=blog.id) }}"{% endif %}>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <div class="field">
+    <label for="title">عنوان</label>
+    <input type="text" id="title" name="title" maxlength="200" required
+           {% if blog %}value="{{ blog.title }}"{% endif %}
+           placeholder="عنوان بلاگ">
+  </div>
+  <div class="visibility-row">
+    <label><input type="radio" name="visibility" value="private"
+      {% if not blog or not blog.is_public %}checked{% endif %}> خصوصی</label>
+    <label><input type="radio" name="visibility" value="public"
+      {% if blog and blog.is_public %}checked{% endif %}> عمومی</label>
+  </div>
+  <div class="editor-wrap"><div id="editor"></div></div>
+  <input type="hidden" id="body" name="body" value="{{ blog.body if blog else '' }}">
+  <button type="submit" class="btn btn-primary">{% if blog %}ذخیره تغییرات{% else %}بلاگ را بساز{% endif %}</button>
+</form>
+{% endif %}
+{% endblock %}
+{% block scripts %}
+<script type="importmap">
+{ "imports": { "dompurify": "{{ url_for('static', filename='vendor/dompurify.es.mjs') }}" } }
+</script>
+{% if blog and blog.url %}
+<script>
+document.getElementById('copy-btn').addEventListener('click', function () {
+  var input = document.getElementById('blog-url');
+  input.select();
+  navigator.clipboard.writeText(input.value).then(function () {
+    var b = document.getElementById('copy-btn');
+    b.textContent = 'کپی شد';
+    setTimeout(function () { b.textContent = 'کپی'; }, 1500);
+  });
+});
+</script>
+{% else %}
+<script type="module" src="{{ url_for('static', filename='js/editor-setup.mjs') }}"></script>
+{% endif %}
+{% endblock %}
