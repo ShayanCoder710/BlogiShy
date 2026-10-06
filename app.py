@@ -35,6 +35,14 @@ def create_app():
                 session.pop("user_id", None)
         return {"current_user": user}
 
+    @app.after_request
+    def no_cache(response):
+        if response.content_type and ("text/html" in response.content_type or "css" in response.content_type or "javascript" in response.content_type):
+            response.headers["Cache-Control"] = "no-store, max-age=0, must-revalidate"
+            response.headers["Pragma"] = "no-cache"
+            response.headers["Expires"] = "0"
+        return response
+
     @app.route("/")
     def home():
         blogs = Blog.query.filter_by(is_public=True)\
