@@ -24,6 +24,11 @@ form.addEventListener("keydown", (e) => {
 });
 
 form.addEventListener("submit", (e) => {
+  const submitBtn = form.querySelector("button[type=submit]");
+  if (e.submitter && e.submitter !== submitBtn) {
+    e.preventDefault();
+    return;
+  }
   e.preventDefault();
   bodyField.value = editor.getHTML() || "";
   form.submit();
