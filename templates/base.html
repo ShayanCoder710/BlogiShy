@@ -34,15 +34,31 @@
 </header>
 
 <main class="site-main">
-  {% with messages = get_flashed_messages(with_categories=true) %}
-    {% for cat, msg in messages %}
-      <div class="flash flash-{{ cat }}">{{ msg }}</div>
-    {% endfor %}
-  {% endwith %}
   {% block content %}{% endblock %}
 </main>
 
 {% block scripts %}{% endblock %}
+<script type="module">
+import { Eggy } from "{{ url_for('static', filename='js/eggy.js', v='15') }}";
+const toasts = [
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% for cat, msg in messages %}
+{ type: {{ ("error" if cat == "error" else "info")|tojson }}, message: {{ msg|tojson }} },
+{% endfor %}
+{% endwith %}
+];
+for (const t of toasts) {
+  Eggy({
+    type: t.type,
+    title: "",
+    message: t.message,
+    position: "top-right",
+    duration: 5000,
+    styles: true,
+    progressBar: true,
+  });
+}
+</script>
 <script>
 (function () {
   var btn = document.querySelector(".nav-toggle");
