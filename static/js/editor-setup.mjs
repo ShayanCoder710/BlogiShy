@@ -16,6 +16,13 @@ const editor = new InkflowEditor(container, {
 
 if (initialHTML) editor.setHTML(initialHTML);
 
+form.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !editor.container.contains(e.target)) {
+    e.preventDefault();
+    editor.focus();
+  }
+});
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   bodyField.value = editor.getHTML() || "";
