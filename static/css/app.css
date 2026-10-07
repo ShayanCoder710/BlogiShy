@@ -126,15 +126,15 @@ a:hover { text-decoration: underline; }
   text-decoration: none;
 }
 .site-nav a.active {
-  color: var(--sky);
-  border-color: rgba(37, 99, 235, 0.35);
+  color: var(--sky-strong);
+  border-color: rgba(37, 99, 235, 0.5);
   background: var(--sky-soft);
-  font-weight: 600;
+  font-weight: 700;
 }
 .site-nav a.active:hover {
   color: var(--sky-strong);
   background: var(--sky-soft);
-  border-color: rgba(37, 99, 235, 0.35);
+  border-color: rgba(37, 99, 235, 0.5);
 }
 @media (max-width: 720px) {
   .nav-toggle {
