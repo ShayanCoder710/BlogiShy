@@ -528,6 +528,20 @@ body .eggy > div {
 }
 .editor-wrap .te-toolbar .te-select option {
   font-family: "IRANYekanX", Tahoma, sans-serif;
+  border-radius: 8px;
+  background-color: var(--bg-soft);
+  color: var(--text);
+}
+.editor-wrap .te-toolbar .te-select option:hover,
+.editor-wrap .te-toolbar .te-select option:focus {
+  background-color: var(--panel-2);
+  color: var(--text);
+  border-radius: 8px;
+}
+.editor-wrap .te-toolbar .te-select option:checked {
+  background-color: var(--sky-soft);
+  color: var(--sky-strong);
+  font-weight: 600;
 }
 .editor-wrap .te-toolbar .te-input {
   height: 30px;
