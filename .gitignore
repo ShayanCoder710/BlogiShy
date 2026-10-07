@@ -6,6 +6,7 @@
 /config.py
 /uploads/
 /static/covers/
+/static/uploads/
 
 .cloud/
 /.cloud

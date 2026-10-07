@@ -5,7 +5,7 @@ import re
 import uuid
 from datetime import timedelta
 
-from flask import (Flask, abort, flash, redirect, render_template,
+from flask import (Flask, abort, flash, jsonify, redirect, render_template,
                    request, send_from_directory, session, url_for)
 
 from config import ADMIN_PASSWORD, ADMIN_USERNAME, COOKIE_DAYS, MYSQL_CONFIG, SECRET_KEY
@@ -52,6 +52,9 @@ def create_app():
 
     COVER_DIR = os.path.join(app.static_folder, "covers")
     os.makedirs(COVER_DIR, exist_ok=True)
+
+    IMAGES_DIR = os.path.join(app.static_folder, "uploads")
+    os.makedirs(IMAGES_DIR, exist_ok=True)
 
     SANITIZE_TAGS = {
         "b", "i", "u", "s", "span", "div", "p", "br", "a",
@@ -154,6 +157,53 @@ def create_app():
             path = os.path.join(COVER_DIR, os.path.basename(filename))
             if os.path.exists(path):
                 os.remove(path)
+
+    MIME_EXT = {
+        "image/webp": ".webp", "image/jpeg": ".jpg", "image/png": ".png",
+        "image/gif": ".gif", "image/svg+xml": ".svg",
+    }
+
+    def save_image_file(file):
+        if not file or not file.filename:
+            return None
+        ext = MIME_EXT.get(file.content_type)
+        if not ext:
+            return None
+        try:
+            name = uuid.uuid4().hex + ext
+            file.save(os.path.join(IMAGES_DIR, name))
+            return name
+        except Exception:
+            return None
+
+    def remove_image_file(filename):
+        if filename:
+            path = os.path.join(IMAGES_DIR, os.path.basename(filename))
+            if os.path.exists(path):
+                os.remove(path)
+
+    @app.route("/upload_image", methods=["POST", "DELETE"])
+    def upload_image():
+        if not session.get("user_id"):
+            abort(404)
+        if request.method == "DELETE":
+            payload = request.get_json(silent=True) or {}
+            name = payload.get("id")
+            if not name:
+                return jsonify(ok=False), 400
+            remove_image_file(name)
+            return jsonify(ok=True)
+        img = request.files.get("file")
+        name = save_image_file(img)
+        if not name:
+            return jsonify(ok=False, error="تصورت قبول نشد"), 400
+        return jsonify(ok=True,
+                       imageUrl=url_for("image", name=name, _external=True),
+                       imageId=name)
+
+    @app.route("/images/<path:name>")
+    def image(name):
+        return send_from_directory(IMAGES_DIR, os.path.basename(name))
 
     @app.route("/")
     def home():

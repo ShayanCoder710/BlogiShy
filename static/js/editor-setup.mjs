@@ -11,6 +11,10 @@ const editor = new InkflowEditor(container, {
   showCharCount: true,
   maxCharCount: 20000,
   placeholder: "اینجا شروع به نوشتن کن…",
+  imageEndpoints: {
+    upload: "/upload_image",
+    delete: "/upload_image",
+  },
   onChange: (html) => { bodyField.value = html || ""; },
   onSave: (html) => { bodyField.value = html || ""; },
 });
