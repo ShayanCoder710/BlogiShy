@@ -290,7 +290,12 @@ const R = {
   command: "fontFamily",
   options: [
     { label: "IRANYekanX", value: "'IRANYekanX', Tahoma, sans-serif" },
-    { label: "JetBrains Mono", value: "'JetBrainsMono', ui-monospace, monospace" }
+    { label: "JetBrains Mono", value: "'JetBrainsMono', ui-monospace, monospace" },
+    { label: "Vazirmatn", value: "'Vazirmatn', Tahoma, sans-serif" },
+    { label: "Shabnam", value: "'Shabnam', Tahoma, sans-serif" },
+    { label: "Arad", value: "'Arad', Tahoma, sans-serif" },
+    { label: "Ubuntu", value: "'Ubuntu', Tahoma, sans-serif" },
+    { label: "Fira Code", value: "'FiraCode', ui-monospace, monospace" }
   ]
 }, I = {
   type: "input",
