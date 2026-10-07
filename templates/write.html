@@ -25,15 +25,24 @@
            placeholder="عنوان بلاگ">
   </div>
   <div class="field">
-    <label for="cover">عکس کاور <span class="hint-inline">(اختیاری)</span></label>
-    <input type="file" id="cover" name="cover" accept="image/*" class="cover-input">
-    <p class="cover-hint">اندازهٔ پیشنهادی ۱۶:۹ است؛ اگر عکس دیگری بگذاری، خودکار به ۱۶:۹ تبدیل می‌شود.</p>
+    <label for="cover" class="field-label">تصویر کاور <span class="hint-inline">(اختیاری)</span></label>
+    <input type="file" id="cover" name="cover" accept="image/*" hidden>
+    <div class="cover-dropzone" id="cover-dropzone" role="button" tabindex="0">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="5" width="18" height="14" rx="2.5"/>
+        <circle cx="8.5" cy="10" r="1.5"/>
+        <path d="M21 15.5 16 10.5 8.5 18"/>
+      </svg>
+      <span class="cover-dz-text">تصویر را انتخاب کن یا اینجا رها کن</span>
+      <span class="cover-dz-sub">PNG یا JPG · نسبت ۱۶:۹ توصیه می‌شود؛ وگرنه خودکار کراپ می‌شود</span>
+    </div>
     <div class="cover-preview" id="cover-preview" hidden>
-      <img id="cover-preview-img" alt="پیش‌نمایش کاور">
-      <label class="cover-remove">
-        <input type="checkbox" name="remove_cover" id="remove-cover" hidden>
-        حذف عکس
-      </label>
+      <img id="cover-preview-img" alt="پیش‌نمایش تصویر کاور">
+      <div class="cover-preview-actions">
+        <button type="button" class="btn btn-sm" id="cover-change-btn">تغییر تصویر</button>
+        <button type="button" class="btn btn-danger btn-sm" id="cover-remove-btn">حذف تصویر</button>
+      </div>
+      <input type="checkbox" name="remove_cover" id="remove-cover" hidden>
     </div>
     {% if blog and blog.cover %}
       <input type="hidden" id="existing-cover" value="{{ blog.cover }}">
@@ -74,11 +83,14 @@ document.getElementById('copy-btn').addEventListener('click', function () {
 <script>
 (function () {
   var fileInput = document.getElementById('cover');
+  var dropzone = document.getElementById('cover-dropzone');
   var preview = document.getElementById('cover-preview');
   var img = document.getElementById('cover-preview-img');
+  var changeBtn = document.getElementById('cover-change-btn');
+  var removeBtn = document.getElementById('cover-remove-btn');
   var removeCheck = document.getElementById('remove-cover');
   var existing = document.getElementById('existing-cover');
-  if (!fileInput || !preview) return;
+  if (!fileInput || !dropzone || !preview) return;
 
   function crop169(source) {
     var sw = source.naturalWidth, sh = source.naturalHeight;
@@ -91,27 +103,66 @@ document.getElementById('copy-btn').addEventListener('click', function () {
     return c.toDataURL('image/jpeg', 0.85);
   }
 
-  fileInput.addEventListener('change', function () {
-    if (fileInput.files.length) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        var im = new Image();
-        im.onload = function () {
-          img.src = crop169(im);
-          preview.hidden = false;
-          removeCheck.checked = false;
-        };
-        im.src = e.target.result;
+  function loadFile(file) {
+    if (!file || !/^image\/(png|jpe?g|webp|gif)/.test(file.type)) return;
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var im = new Image();
+      im.onload = function () {
+        img.src = crop169(im);
+        preview.hidden = false;
+        dropzone.hidden = true;
+        removeCheck.checked = false;
       };
-      reader.readAsDataURL(fileInput.files[0]);
-    } else {
-      preview.hidden = true;
-    }
+      im.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function clearCover() {
+    fileInput.value = '';
+    preview.hidden = true;
+    dropzone.hidden = false;
+    removeCheck.checked = true;
+  }
+
+  function openPicker() { fileInput.click(); }
+
+  dropzone.addEventListener('click', openPicker);
+  dropzone.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPicker(); }
+  });
+  changeBtn.addEventListener('click', openPicker);
+  removeBtn.addEventListener('click', clearCover);
+
+  ['dragenter', 'dragover'].forEach(function (t) {
+    dropzone.addEventListener(t, function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      dropzone.classList.add('is-dragover');
+    });
+  });
+  ['dragleave', 'drop'].forEach(function (t) {
+    dropzone.addEventListener(t, function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      dropzone.classList.remove('is-dragover');
+    });
+  });
+  dropzone.addEventListener('drop', function (e) {
+    loadFile(e.dataTransfer.files && e.dataTransfer.files[0]);
+  });
+  document.addEventListener('dragover', function (e) { e.preventDefault(); });
+  document.addEventListener('drop', function (e) { e.preventDefault(); });
+
+  fileInput.addEventListener('change', function () {
+    loadFile(fileInput.files[0]);
   });
 
   if (existing && existing.value) {
     img.src = '/covers/' + existing.value;
     preview.hidden = false;
+    dropzone.hidden = true;
   }
 })();
 </script>

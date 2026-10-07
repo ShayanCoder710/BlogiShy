@@ -20,15 +20,15 @@
     <span></span>
   </button>
   <nav class="site-nav" id="site-nav">
-    <a href="{{ url_for('home') }}">خانه</a>
+    <a href="{{ url_for('home') }}" {% if request.path == '/' %}class="active"{% endif %}>خانه</a>
     {% if current_user %}
-      <a href="{{ url_for('write') }}">نوشتن بلاگ</a>
-      <a href="{{ url_for('profile') }}">بلاگ‌های من</a>
-      <a href="{{ url_for('settings') }}">تنظیمات</a>
+      <a href="{{ url_for('write') }}" {% if request.path in ('/write', '/edit') or request.path.startswith('/edit/') %}class="active"{% endif %}>نوشتن بلاگ</a>
+      <a href="{{ url_for('profile') }}" {% if request.path == '/profile' %}class="active"{% endif %}>بلاگ‌های من</a>
+      <a href="{{ url_for('settings') }}" {% if request.path == '/settings' %}class="active"{% endif %}>تنظیمات</a>
       <a href="{{ url_for('logout') }}">خروج</a>
     {% else %}
-      <a href="{{ url_for('register') }}">ثبت نام</a>
-      <a href="{{ url_for('login') }}">ورود</a>
+      <a href="{{ url_for('register') }}" {% if request.path == '/register' %}class="active"{% endif %}>ثبت نام</a>
+      <a href="{{ url_for('login') }}" {% if request.path == '/login' %}class="active"{% endif %}>ورود</a>
     {% endif %}
   </nav>
 </header>
@@ -52,7 +52,7 @@ for (const t of toasts) {
     type: t.type,
     title: "",
     message: t.message,
-    position: "top-right",
+    position: "bottom-right",
     duration: 5000,
     styles: true,
     progressBar: true,
