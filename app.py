@@ -53,6 +53,78 @@ def create_app():
     COVER_DIR = os.path.join(app.static_folder, "covers")
     os.makedirs(COVER_DIR, exist_ok=True)
 
+    SANITIZE_TAGS = {
+        "b", "i", "u", "s", "span", "div", "p", "br", "a",
+        "h1", "h2", "h3", "h4", "h5", "h6", "ul", "ol", "li",
+        "blockquote", "hr", "pre", "code", "img", "table",
+        "tbody", "tr", "td", "th", "thead", "tfoot", "figure",
+        "figcaption",
+    }
+    SANITIZE_ATTRS = {
+        "href", "src", "alt", "style", "color", "background-color",
+        "class", "id", "target", "rel", "contenteditable",
+        "data-placeholder", "data-image-id",
+    }
+
+    def _safe_url(attr, value):
+        if attr in ("href", "src"):
+            v = value.lower()
+            v = "".join(ch for ch in v if ch not in "\t\n\r\x00 \x0b\x0c")
+            if v.startswith(("javascript:", "data:", "vbscript:",
+                             "file:", "about:", "blob:")):
+                return None
+        return value
+
+    def sanitize_html(html):
+        if not html:
+            return html
+        from lxml import html as _lxml_html
+
+        doc = _lxml_html.fromstring(
+            "<html><body>" + html + "</body></html>")
+        body = doc.body
+        if body is None:
+            return ""
+
+        while True:
+            bad = [el for el in body.iter()
+                   if el is not body
+                   and not (isinstance(el.tag, str) and el.tag in SANITIZE_TAGS)]
+            if not bad:
+                break
+            for el in bad:
+                parent = el.getparent()
+                if parent is None:
+                    continue
+                for child in list(el):
+                    el.addprevious(child)
+                parent.remove(el)
+
+        for el in body.iter():
+            if not isinstance(el.tag, str):
+                continue
+            for attr in list(el.attrib):
+                if attr not in SANITIZE_ATTRS:
+                    del el.attrib[attr]
+                else:
+                    safe = _safe_url(attr, el.attrib[attr])
+                    if safe is None:
+                        del el.attrib[attr]
+                    else:
+                        el.attrib[attr] = safe
+            if el.tag == "a":
+                el.set("target", "_blank")
+                el.set("rel", "noopener noreferrer")
+
+        parts = []
+        for child in list(body):
+            parts.append(_lxml_html.tostring(
+                child, encoding="unicode", method="html"))
+        out = "".join(parts).strip()
+        if out in ("", "<p></p>", "<p><br></p>", "<p><br/></p>"):
+            return ""
+        return out
+
     def crop_16_9(img):
         w, h = img.size
         target = 16 / 9
@@ -178,6 +250,11 @@ def create_app():
             if not title:
                 flash("عنوان بلاگ را وارد کنید.", "error")
                 return redirect(url_for("write"))
+            title = title[:200]
+            if not body:
+                flash("متن بلاگ را بنویسید.", "error")
+                return redirect(url_for("write"))
+            body = sanitize_html(body)
             if not body:
                 flash("متن بلاگ را بنویسید.", "error")
                 return redirect(url_for("write"))
@@ -215,6 +292,11 @@ def create_app():
             if not title:
                 flash("عنوان بلاگ را وارد کنید.", "error")
                 return redirect(url_for("edit_blog", blog_id=blog.id))
+            title = title[:200]
+            if not body:
+                flash("متن بلاگ را بنویسید.", "error")
+                return redirect(url_for("edit_blog", blog_id=blog.id))
+            body = sanitize_html(body)
             if not body:
                 flash("متن بلاگ را بنویسید.", "error")
                 return redirect(url_for("edit_blog", blog_id=blog.id))
