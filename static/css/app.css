@@ -662,6 +662,56 @@ body .eggy > div {
   background: rgba(255, 255, 255, 0.92);
   box-shadow: 0 2px 8px rgba(29, 38, 53, 0.15);
 }
+.te-modal .te-modal-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.te-modal .img-dz {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 18px 14px;
+  margin-top: 6px;
+  border-radius: 12px;
+  border: 1.5px dashed var(--border);
+  background: var(--bg-soft);
+  cursor: pointer;
+  text-align: center;
+  transition: border-color var(--speed) var(--ease), background var(--speed) var(--ease);
+}
+.te-modal .img-dz:hover,
+.te-modal .img-dz.is-dragover {
+  border-color: var(--sky);
+  background: var(--sky-soft);
+}
+.te-modal .img-dz svg { color: var(--sky); opacity: 0.9; }
+.te-modal .img-dz.is-dragover svg { opacity: 1; }
+.te-modal .img-dz-text { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+.te-modal .img-dz-sub { font-size: 0.74rem; color: var(--muted); }
+.te-modal .img-dz-preview {
+  margin-top: 4px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+  max-width: 100%;
+}
+.te-modal .img-dz-preview img {
+  display: block;
+  width: 100%;
+  max-height: 160px;
+  object-fit: contain;
+  background: var(--bg-soft);
+}
 .share-box h2 { margin-top: 0; }
 .share-box .copy-row {
   display: flex;

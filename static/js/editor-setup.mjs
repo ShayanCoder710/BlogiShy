@@ -1,4 +1,5 @@
 import { InkflowEditor } from "/static/js/inkflow-editor.mjs";
+import { enhanceModalImageInputs } from "/static/js/modal-dropzone.mjs";
 
 const container = document.getElementById("editor");
 const form = document.querySelector(".write-form");
@@ -15,6 +16,8 @@ const editor = new InkflowEditor(container, {
 });
 
 if (initialHTML) editor.setHTML(initialHTML);
+
+enhanceModalImageInputs(document);
 
 form.addEventListener("keydown", (e) => {
   if (e.key === "Enter" && !editor.container.contains(e.target)) {
