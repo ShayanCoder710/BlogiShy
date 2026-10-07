@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from extensions import db
+from sqlalchemy.dialects.mysql import MEDIUMTEXT
 
 
 class User(db.Model):
@@ -29,7 +30,7 @@ class Blog(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
-    body = db.Column(db.Text, nullable=False)
+    body = db.Column(db.Text().with_variant(MEDIUMTEXT, "mysql"), nullable=False)
     token = db.Column(db.String(64), unique=True, nullable=False, index=True)
     is_public = db.Column(db.Boolean, default=False, nullable=False)
     cover = db.Column(db.String(255), nullable=True)
