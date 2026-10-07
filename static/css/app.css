@@ -437,9 +437,8 @@ body .eggy > div {
 .te-modal *,
 .te-floating-toolbar,
 .te-floating-toolbar *,
-.te-content,
-.te-content * {
-  font-family: "IRANYekanX", Tahoma, sans-serif !important;
+.te-content {
+  font-family: "IRANYekanX", Tahoma, sans-serif;
 }
 .te-content pre,
 .te-content pre *,
@@ -464,6 +463,55 @@ body .eggy > div {
 }
 .editor-wrap .te-container:focus-within {
   box-shadow: 0 0 0 4px var(--sky-soft) !important;
+}
+.editor-wrap .te-toolbar .te-select {
+  height: 30px;
+  padding: 0 28px 0 10px;
+  min-width: 118px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: "IRANYekanX", Tahoma, sans-serif;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background-color: var(--bg-soft);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%232563eb'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M19 9l-7 7-7-7'%3E%3C/svg%3E");
+  background-size: 14px;
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color var(--speed) var(--ease), box-shadow var(--speed) var(--ease), background-color var(--speed) var(--ease);
+}
+.editor-wrap .te-toolbar .te-select:hover {
+  border-color: var(--sky);
+  background-color: #fff;
+}
+.editor-wrap .te-toolbar .te-select:focus {
+  border-color: var(--sky);
+  box-shadow: 0 0 0 3px var(--sky-soft);
+  outline: none;
+}
+.editor-wrap .te-toolbar .te-select option {
+  font-family: "IRANYekanX", Tahoma, sans-serif;
+}
+.editor-wrap .te-toolbar .te-input {
+  height: 30px;
+  width: 52px;
+  font-size: 0.78rem;
+  font-family: "IRANYekanX", Tahoma, sans-serif;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background-color: var(--bg-soft);
+  color: var(--text);
+  transition: border-color var(--speed) var(--ease), box-shadow var(--speed) var(--ease);
+}
+.editor-wrap .te-toolbar .te-input:hover {
+  border-color: var(--border-focus, var(--border));
+}
+.editor-wrap .te-toolbar .te-input:focus {
+  border-color: var(--sky);
+  box-shadow: 0 0 0 3px var(--sky-soft);
+  outline: none;
 }
 .visibility-row {
   display: flex;
