@@ -47,7 +47,7 @@
         <tr>
           <td class="num">{{ b.id | fa }}</td>
           <td>{{ b.title }}</td>
-          <td dir="ltr">{{ b.user.username if b.user else '-' }}</td>
+          <td dir="ltr">{{ b.user.display_name if b.user else '-' }}</td>
           <td>{% if b.is_public %}<span class="badge badge-public">عمومی</span>{% else %}<span class="badge badge-private">خصوصی</span>{% endif %}</td>
           <td>
             <div class="row-actions">
