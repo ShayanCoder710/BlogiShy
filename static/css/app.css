@@ -981,3 +981,60 @@ body .eggy > div {
   font-family: "JetBrainsMono", ui-monospace, monospace;
   font-size: 0.85rem;
 }
+
+@media (max-width: 720px) {
+  .site-header { gap: 10px; padding: 8px 12px; }
+  .brand { font-size: 1.05rem; gap: 8px; }
+  .brand img { width: 26px; height: 26px; }
+  .site-main { padding: 24px 14px 40px; }
+  .home-hero { padding: 36px 8px 28px; }
+  .home-hero h1 { font-size: 1.55rem; }
+  .home-hero p { font-size: 0.95rem; max-width: 440px; }
+  h2 { font-size: 1.18rem; }
+  .form-card, .blog-view, .share-box { padding: 20px 16px; }
+  .write-form { padding: 20px 14px; }
+  .form-card h1 { font-size: 1.25rem; }
+  .blog-view h1 { font-size: 1.55rem; }
+  .blog-meta { font-size: 0.85rem; }
+  .blog-body { font-size: 1rem; }
+  .field { margin-bottom: 14px; }
+  .admin-head { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .admin-head h1 { font-size: 1.3rem; }
+  .admin-section { padding: 14px 12px; }
+  .admin-table { min-width: 560px; font-size: 0.84rem; }
+  .admin-table th, .admin-table td { padding: 9px 10px; }
+  .profile-item { flex-direction: column; align-items: stretch; gap: 10px; }
+  .profile-cover { width: 100%; height: auto; aspect-ratio: 16 / 9; }
+  .profile-item .actions { justify-content: flex-start; }
+  .visibility-row { flex-wrap: wrap; gap: 8px; }
+  .visibility-row label { flex: 1 1 130px; justify-content: center; }
+  .cover-dropzone { padding: 20px 12px; gap: 6px; }
+  .cover-preview-actions { flex-wrap: wrap; gap: 6px; }
+  .cover-preview-actions .btn { flex: 1 1 auto; white-space: nowrap; }
+  .editor-wrap .te-content { padding: 12px 10px; min-height: 180px; font-size: 15px; }
+  .editor-wrap .te-toolbar { padding: 5px; gap: 2px; }
+  .editor-wrap .te-toolbar .te-select { min-width: 72px; height: 24px; font-size: 0.68rem; padding: 0 18px 0 6px; }
+  .editor-wrap .te-toolbar .te-input { width: 34px; height: 24px; font-size: 0.68rem; }
+  .editor-wrap .te-toolbar .te-button { width: 24px; height: 24px; }
+  .editor-wrap .te-toolbar .te-button svg { width: 12px; height: 12px; }
+  .editor-wrap .te-toolbar .te-divider { width: 1px; height: 12px; margin: 0 1px; }
+  .editor-wrap .te-toolbar-status { font-size: 9px; padding-right: 4px; }
+  .te-emoji-picker { width: min(220px, calc(100vw - 40px)); height: min(280px, 50vh); }
+  .te-emoji-header { padding: 6px; }
+  .te-emoji-search { padding: 6px 9px; font-size: 12px; }
+  .te-emoji-body { padding: 4px; }
+  .te-emoji-grid { grid-template-columns: repeat(6, 1fr); gap: 1px; }
+  .te-emoji-item { width: 30px; height: 30px; font-size: 16px; }
+  .te-emoji-category-title { grid-column: span 6; padding: 4px 2px 1px; font-size: 9px; }
+  .te-modal { width: min(240px, calc(100vw - 40px)); padding: 12px; }
+}
+
+@media (max-width: 460px) {
+  .btn { padding: 10px 16px; }
+  .home-hero h1 { font-size: 1.35rem; }
+  .share-box .copy-row, .copy-row { flex-direction: column; align-items: stretch; }
+  .share-box .copy-row input, .copy-row input { flex: 1 1 auto; }
+  .owner-actions { flex-direction: column; align-items: stretch; gap: 8px; }
+  .owner-actions .btn { width: 100%; }
+  .visibility-row label { flex-basis: 100%; }
+}
