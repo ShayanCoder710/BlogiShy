@@ -1018,6 +1018,19 @@ body .eggy > div {
   border: 1px solid var(--border-soft);
   background: var(--bg-soft);
 }
+.profile-cover-ph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #eef2fb 0%, #f7f9fe 100%);
+  border: 1px dashed rgba(37, 99, 235, 0.25);
+  overflow: hidden;
+}
+.profile-cover-ph span {
+  font-size: 0.7rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
 .profile-item .meta { font-size: 0.85rem; color: var(--muted); margin: 0; }
 .profile-item .actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .inline-form { display: inline; margin: 0; }

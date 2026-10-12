@@ -7,7 +7,7 @@
 <div class="profile-list">
   {% for b in blogs %}
   <div class="profile-item">
-    {% if b.cover %}<img class="profile-cover" src="{{ url_for('cover', name=b.cover) }}" alt="">{% endif %}
+    {% if b.cover %}<img class="profile-cover" src="{{ url_for('cover', name=b.cover) }}" alt="">{% else %}<div class="profile-cover profile-cover-ph"><span>بی‌کاور</span></div>{% endif %}
     <div class="profile-text">
       <h3>{{ b.title }}</h3>
       <p class="meta">

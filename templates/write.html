@@ -64,7 +64,7 @@
 {% endblock %}
 {% block scripts %}
 <script type="importmap">
-{ "imports": { "dompurify": "{{ url_for('static', filename='vendor/dompurify.es.mjs', v='24') }}" } }
+{ "imports": { "dompurify": "{{ url_for('static', filename='vendor/dompurify.es.mjs', v='25') }}" } }
 </script>
 {% if blog and blog.url %}
 <script>
@@ -79,7 +79,7 @@ document.getElementById('copy-btn').addEventListener('click', function () {
 });
 </script>
 {% else %}
-<script type="module" src="{{ url_for('static', filename='js/editor-setup.mjs', v='24') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/editor-setup.mjs', v='25') }}"></script>
 <script>
 (function () {
   var fileInput = document.getElementById('cover');
