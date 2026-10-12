@@ -1000,6 +1000,15 @@ body .eggy > div {
   box-shadow: 0 4px 14px rgba(29, 38, 53, 0.06);
 }
 .profile-item h3 { margin: 0; font-size: 1rem; }
+.profile-text {
+  flex: 1;
+  min-width: 0;
+}
+.profile-text h3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .profile-cover {
   width: 96px;
   height: 54px;

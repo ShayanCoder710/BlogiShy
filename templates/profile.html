@@ -8,7 +8,7 @@
   {% for b in blogs %}
   <div class="profile-item">
     {% if b.cover %}<img class="profile-cover" src="{{ url_for('cover', name=b.cover) }}" alt="">{% endif %}
-    <div>
+    <div class="profile-text">
       <h3>{{ b.title }}</h3>
       <p class="meta">
         {% if b.is_public %}عمومی{% else %}خصوصی{% endif %} &middot; {{ b.created_at.strftime('%Y-%m-%d') | fa }}
