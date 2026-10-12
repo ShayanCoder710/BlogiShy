@@ -14,6 +14,195 @@ from PIL import Image, ImageOps
 from sqlalchemy import or_
 
 
+SANITIZE_TAGS = {
+    "b", "i", "u", "s", "span", "div", "p", "br", "a",
+    "h1", "h2", "h3", "h4", "h5", "h6", "ul", "ol", "li",
+    "blockquote", "hr", "pre", "code", "img", "table",
+    "tbody", "tr", "td", "th", "thead", "tfoot", "figure",
+    "figcaption",
+}
+SANITIZE_ATTRS = {
+    "href", "src", "alt", "style", "color", "background-color",
+    "class", "id", "target", "rel",
+    "data-placeholder", "data-image-id",
+}
+SCAFFOLD_CLASSES = {
+    "te-code-controls", "te-code-copy-btn", "te-code-remove-btn",
+    "te-resize-bar", "te-resize-corner", "te-close-icon",
+    "te-image-resizer",
+}
+INLINE_HEADING_TAGS = {"h1", "h2", "h3", "h4", "h5", "h6", "p"}
+BLOCK_CHILD_TAGS = {
+    "pre", "div", "p", "table", "figure", "ul", "ol",
+    "blockquote", "h1", "h2", "h3", "h4", "h5", "h6",
+    "hr", "img",
+}
+HOIST_OUT_OF = {
+    "h1", "h2", "h3", "h4", "h5", "h6", "p",
+    "span", "a", "b", "i", "u", "s", "em", "strong",
+    "figcaption",
+}
+
+
+def _safe_url(attr, value):
+    if attr in ("href", "src"):
+        v = value.lower()
+        v = "".join(ch for ch in v if ch not in "\t\n\r\x00 \x0b\x0c")
+        if v.startswith(("javascript:", "data:", "vbscript:",
+                         "file:", "about:", "blob:")):
+            return None
+    return value
+
+
+def _classes(el):
+    return (el.get("class") or "").split()
+
+
+def sanitize_html(html):
+    if not html:
+        return html
+    from lxml import html as _lxml_html
+
+    doc = _lxml_html.fromstring(
+        "<html><body>" + html + "</body></html>")
+    body = doc.body
+    if body is None:
+        return ""
+
+    while True:
+        bad = [el for el in body.iter()
+               if el is not body
+               and not (isinstance(el.tag, str) and el.tag in SANITIZE_TAGS)]
+        if not bad:
+            break
+        for el in bad:
+            parent = el.getparent()
+            if parent is None:
+                continue
+            for child in list(el):
+                el.addprevious(child)
+            parent.remove(el)
+
+    for el in body.iter():
+        if not isinstance(el.tag, str):
+            continue
+        for attr in list(el.attrib):
+            if attr not in SANITIZE_ATTRS:
+                del el.attrib[attr]
+            else:
+                safe = _safe_url(attr, el.attrib[attr])
+                if safe is None:
+                    del el.attrib[attr]
+                else:
+                    el.attrib[attr] = safe
+        if el.tag == "a":
+            el.set("target", "_blank")
+            el.set("rel", "noopener noreferrer")
+
+    for el in list(body.iter()):
+        if isinstance(el.tag, str) \
+                and any(c in SCAFFOLD_CLASSES for c in _classes(el)):
+            parent = el.getparent()
+            if parent is None:
+                continue
+            for child in list(el):
+                el.addprevious(child)
+            parent.remove(el)
+
+    for el in list(body.iter()):
+        if isinstance(el.tag, str) and el.tag == "div" \
+                and "te-code-wrapper" in _classes(el):
+            parent = el.getparent()
+            if parent is None:
+                continue
+            pre = el.find("pre")
+            if pre is not None:
+                parent.replace(el, pre)
+            else:
+                for child in list(el):
+                    el.addprevious(child)
+                parent.remove(el)
+
+    for el in list(body.iter()):
+        if isinstance(el.tag, str) \
+                and "is-loading" in _classes(el) \
+                and not "".join(el.itertext()).strip():
+            parent = el.getparent()
+            if parent is not None:
+                parent.remove(el)
+    for el in list(body.iter()):
+        if isinstance(el.tag, str) and el.tag == "pre" \
+                and not "".join(el.itertext()).strip():
+            parent = el.getparent()
+            if parent is not None:
+                parent.remove(el)
+    for el in list(body.iter()):
+        if isinstance(el.tag, str) and el.tag == "img" \
+                and not el.get("src"):
+            parent = el.getparent()
+            if parent is not None:
+                parent.remove(el)
+    for _ in range(8):
+        figs = [el for el in list(body.iter())
+                if isinstance(el.tag, str) and el.tag == "figure"
+                and not "".join(el.itertext()).strip()]
+        for el in figs:
+            parent = el.getparent()
+            if parent is not None:
+                parent.remove(el)
+        if not figs:
+            break
+    for _ in range(8):
+        removed = False
+        for el in list(body.iter()):
+            if isinstance(el.tag, str) \
+                    and "te-image-container" in _classes(el):
+                img = el.find("img")
+                if img is None or not img.get("src"):
+                    parent = el.getparent()
+                    if parent is not None:
+                        parent.remove(el)
+                    removed = True
+        if not removed:
+            break
+
+    for _ in range(60):
+        moved = False
+        for el in list(body.iter()):
+            if not isinstance(el.tag, str):
+                continue
+            if el.tag not in BLOCK_CHILD_TAGS:
+                continue
+            parent = el.getparent()
+            if parent is None or parent is body:
+                continue
+            if not isinstance(parent.tag, str) \
+                    or parent.tag not in HOIST_OUT_OF:
+                continue
+            target = parent
+            target.addnext(el)
+            moved = True
+        if not moved:
+            break
+
+    for el in list(body.iter()):
+        if isinstance(el.tag, str) \
+                and el.tag in ("h1", "h2", "h3", "h4", "h5", "h6") \
+                and not "".join(el.itertext()).strip():
+            parent = el.getparent()
+            if parent is not None:
+                parent.remove(el)
+
+    parts = []
+    for child in list(body):
+        parts.append(_lxml_html.tostring(
+            child, encoding="unicode", method="html"))
+    out = "".join(parts).strip()
+    if out in ("", "<p></p>", "<p><br></p>", "<p><br/></p>"):
+        return ""
+    return out
+
+
 def create_app():
     app = Flask(__name__)
     app.config["SQLALCHEMY_DATABASE_URI"] = MYSQL_CONFIG
@@ -56,78 +245,6 @@ def create_app():
 
     IMAGES_DIR = os.path.join(app.static_folder, "uploads")
     os.makedirs(IMAGES_DIR, exist_ok=True)
-
-    SANITIZE_TAGS = {
-        "b", "i", "u", "s", "span", "div", "p", "br", "a",
-        "h1", "h2", "h3", "h4", "h5", "h6", "ul", "ol", "li",
-        "blockquote", "hr", "pre", "code", "img", "table",
-        "tbody", "tr", "td", "th", "thead", "tfoot", "figure",
-        "figcaption",
-    }
-    SANITIZE_ATTRS = {
-        "href", "src", "alt", "style", "color", "background-color",
-        "class", "id", "target", "rel", "contenteditable",
-        "data-placeholder", "data-image-id",
-    }
-
-    def _safe_url(attr, value):
-        if attr in ("href", "src"):
-            v = value.lower()
-            v = "".join(ch for ch in v if ch not in "\t\n\r\x00 \x0b\x0c")
-            if v.startswith(("javascript:", "data:", "vbscript:",
-                             "file:", "about:", "blob:")):
-                return None
-        return value
-
-    def sanitize_html(html):
-        if not html:
-            return html
-        from lxml import html as _lxml_html
-
-        doc = _lxml_html.fromstring(
-            "<html><body>" + html + "</body></html>")
-        body = doc.body
-        if body is None:
-            return ""
-
-        while True:
-            bad = [el for el in body.iter()
-                   if el is not body
-                   and not (isinstance(el.tag, str) and el.tag in SANITIZE_TAGS)]
-            if not bad:
-                break
-            for el in bad:
-                parent = el.getparent()
-                if parent is None:
-                    continue
-                for child in list(el):
-                    el.addprevious(child)
-                parent.remove(el)
-
-        for el in body.iter():
-            if not isinstance(el.tag, str):
-                continue
-            for attr in list(el.attrib):
-                if attr not in SANITIZE_ATTRS:
-                    del el.attrib[attr]
-                else:
-                    safe = _safe_url(attr, el.attrib[attr])
-                    if safe is None:
-                        del el.attrib[attr]
-                    else:
-                        el.attrib[attr] = safe
-            if el.tag == "a":
-                el.set("target", "_blank")
-                el.set("rel", "noopener noreferrer")
-
-        parts = []
-        for child in list(body):
-            parts.append(_lxml_html.tostring(
-                child, encoding="unicode", method="html"))
-        out = "".join(parts).strip()
-        if out in ("", "<p></p>", "<p><br></p>", "<p><br/></p>"):
-            return ""
-        return out
 
     def crop_16_9(img):
         w, h = img.size

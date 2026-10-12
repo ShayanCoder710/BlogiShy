@@ -578,6 +578,29 @@ body .eggy > div {
 .editor-wrap .te-content[data-placeholder].is-empty:before {
   text-align: right;
 }
+.editor-wrap .te-content .te-code-wrapper {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  overflow: visible;
+}
+.editor-wrap .te-content .te-code-wrapper pre {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 56px;
+  overflow-x: auto;
+  direction: ltr;
+  text-align: left;
+}
+.editor-wrap .te-content .te-code-wrapper .te-code-controls {
+  opacity: 1;
+  transform: none;
+}
+.editor-wrap .te-content .te-code-wrapper .te-code-remove-btn {
+  padding: 0;
+  width: 28px;
+}
 .editor-wrap .te-container, .te-emoji-picker, .te-modal, .te-floating-toolbar {
   --te-primary-color: var(--sky) !important;
   --te-primary-hover: var(--sky-strong) !important;
@@ -885,7 +908,10 @@ body .eggy > div {
   padding: 2px 8px;
   border-radius: 6px;
   color: var(--text);
+  font-family: "JetBrainsMono", ui-monospace, monospace;
   font-size: .9em;
+  direction: ltr;
+  display: inline-block;
 }
 .blog-body pre {
   background: #f4f6fa;
@@ -895,6 +921,13 @@ body .eggy > div {
   overflow-x: auto;
   margin: 1.2em 0;
   color: var(--text);
+  font-family: "JetBrainsMono", ui-monospace, monospace;
+  font-size: .9rem;
+  line-height: 1.7;
+  direction: ltr;
+  text-align: left;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 .blog-body pre code {
   background: none;
