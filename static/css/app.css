@@ -437,7 +437,32 @@ body .eggy > div {
   overflow: hidden;
   min-height: calc(2 * 1.5em);
 }
-.blog-card-meta { margin: auto 0 0; font-size: 0.85rem; color: var(--muted); }
+.blog-card-meta {
+  margin: auto 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.blog-card-author {
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.blog-card-author::before {
+  content: "توسط ";
+  font-weight: 400;
+  color: var(--muted);
+}
+.blog-card-date {
+  flex-shrink: 0;
+  direction: ltr;
+  font-variant-numeric: tabular-nums;
+}
 .form-card, .blog-view, .share-box {
   background: var(--panel);
   border: 1px solid var(--border-soft);

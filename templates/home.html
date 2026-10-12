@@ -29,7 +29,10 @@
           </div>
           <div class="blog-card-content">
             <h3>{{ b.title }}</h3>
-            <p class="blog-card-meta">توسط {{ b.user.display_name }} &middot; {{ b.created_at.strftime('%Y-%m-%d') | fa }}</p>
+            <div class="blog-card-meta">
+              <span class="blog-card-author">{{ b.user.display_name }}</span>
+              <span class="blog-card-date">{{ b.created_at.strftime('%Y-%m-%d') | fa }}</span>
+            </div>
           </div>
         </a>
       {% endfor %}
@@ -49,7 +52,10 @@
         </div>
         <div class="blog-card-content">
           <h3>{{ b.title }}</h3>
-          <p class="blog-card-meta">توسط {{ b.user.display_name }} &middot; {{ b.created_at.strftime('%Y-%m-%d') | fa }}</p>
+          <div class="blog-card-meta">
+            <span class="blog-card-author">{{ b.user.display_name }}</span>
+            <span class="blog-card-date">{{ b.created_at.strftime('%Y-%m-%d') | fa }}</span>
+          </div>
         </div>
       </a>
     {% endfor %}
