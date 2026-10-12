@@ -530,6 +530,17 @@ def create_app():
                 db.session.commit()
                 flash("نام کاربری تغییر کرد.", "success")
 
+            elif which == "name":
+                name = request.form.get("name", "").strip()
+                last_name = request.form.get("last_name", "").strip()
+                if len(name) > 50 or len(last_name) > 50:
+                    flash("اسم یا فامیل بیش از ۵۰ کاراکتر است.", "error")
+                    return redirect(url_for("settings"))
+                user.name = name or None
+                user.last_name = last_name or None
+                db.session.commit()
+                flash("اسم و فامیل تغییر کرد.", "success")
+
             elif which == "password":
                 current = request.form.get("current", "")
                 new_password = request.form.get("new", "")

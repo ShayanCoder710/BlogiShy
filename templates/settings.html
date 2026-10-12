@@ -4,6 +4,23 @@
 <h1 class="center">تنظیمات حساب</h1>
 <div class="settings-grid">
   <div class="form-card">
+    <h2>اسم و فامیل</h2>
+    <p class="muted">این اسم روی صفحه‌ی پروفایل و در کنار بلاگ‌ها نمایش داده می‌شود.</p>
+    <form method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <input type="hidden" name="which" value="name">
+      <div class="field">
+        <label for="name">نام</label>
+        <input type="text" id="name" name="name" maxlength="50" value="{{ user.name or '' }}" placeholder="نام">
+      </div>
+      <div class="field">
+        <label for="last_name">نام خانوادگی</label>
+        <input type="text" id="last_name" name="last_name" maxlength="50" value="{{ user.last_name or '' }}" placeholder="نام خانوادگی">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">ذخیره‌ی اسم و فامیل</button>
+    </form>
+  </div>
+  <div class="form-card">
     <h2>نام کاربری</h2>
     <p class="muted">نام کاربری فعلی: <strong>{{ user.username }}</strong></p>
     <form method="post">
