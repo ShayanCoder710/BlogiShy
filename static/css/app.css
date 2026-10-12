@@ -1022,13 +1022,15 @@ body .eggy > div {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #eef2fb 0%, #f7f9fe 100%);
-  border: 1px dashed rgba(37, 99, 235, 0.25);
+  background: linear-gradient(135deg, var(--sky-soft), var(--violet-soft));
+  border: 1px dashed var(--border);
   overflow: hidden;
 }
 .profile-cover-ph span {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 600;
   color: var(--muted);
+  letter-spacing: 0.5px;
   white-space: nowrap;
 }
 .profile-item .meta { font-size: 0.85rem; color: var(--muted); margin: 0; }

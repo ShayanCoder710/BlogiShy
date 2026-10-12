@@ -206,6 +206,7 @@ def sanitize_html(html):
 def create_app():
     app = Flask(__name__)
     app.config["SQLALCHEMY_DATABASE_URI"] = MYSQL_CONFIG
+    app.config["TEMPLATES_AUTO_RELOAD"] = True
     app.config["SECRET_KEY"] = SECRET_KEY
     app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days=COOKIE_DAYS)
     app.config["SESSION_PERMANENT"] = True
