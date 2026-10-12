@@ -515,31 +515,25 @@ def create_app():
 
         if request.method == "POST":
             which = request.form.get("which")
-            if which == "username":
+            if which == "profile":
                 username = request.form.get("username", "").strip()
-                if username == user.username:
-                    flash("نام کاربری تغییر نکرده است.", "error")
-                    return redirect(url_for("settings"))
+                name = request.form.get("name", "").strip()
+                last_name = request.form.get("last_name", "").strip()
                 if not re.fullmatch(r"[\w\-]{3,30}", username):
                     flash("نام کاربری باید ۳ تا ۳۰ کاراکتر (حروف، اعداد، - و _) باشد.", "error")
                     return redirect(url_for("settings"))
-                if User.query.filter_by(username=username).first():
-                    flash("این نام کاربری قبلاً ثبت شده است.", "error")
-                    return redirect(url_for("settings"))
-                user.username = username
-                db.session.commit()
-                flash("نام کاربری تغییر کرد.", "success")
-
-            elif which == "name":
-                name = request.form.get("name", "").strip()
-                last_name = request.form.get("last_name", "").strip()
                 if len(name) > 50 or len(last_name) > 50:
                     flash("اسم یا فامیل بیش از ۵۰ کاراکتر است.", "error")
                     return redirect(url_for("settings"))
+                if username != user.username:
+                    if User.query.filter_by(username=username).first():
+                        flash("این نام کاربری قبلاً ثبت شده است.", "error")
+                        return redirect(url_for("settings"))
+                    user.username = username
                 user.name = name or None
                 user.last_name = last_name or None
                 db.session.commit()
-                flash("اسم و فامیل تغییر کرد.", "success")
+                flash("پروفایل ذخیره شد.", "success")
 
             elif which == "password":
                 current = request.form.get("current", "")

@@ -4,11 +4,15 @@
 <h1 class="center">تنظیمات حساب</h1>
 <div class="settings-grid">
   <div class="form-card">
-    <h2>اسم و فامیل</h2>
-    <p class="muted">این اسم روی صفحه‌ی پروفایل و در کنار بلاگ‌ها نمایش داده می‌شود.</p>
+    <h2>پروفایل</h2>
+    <p class="muted">نام کاربری و اسم شما. اسم روی صفحه‌ی پروفایل و در کنار بلاگ‌ها نمایش داده می‌شود.</p>
     <form method="post">
       <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-      <input type="hidden" name="which" value="name">
+      <input type="hidden" name="which" value="profile">
+      <div class="field">
+        <label for="username">نام کاربری</label>
+        <input type="text" id="username" name="username" required pattern="[\w\-]{3,30}" minlength="3" maxlength="30" value="{{ user.username }}" placeholder="مثلا: ali">
+      </div>
       <div class="field">
         <label for="name">نام</label>
         <input type="text" id="name" name="name" maxlength="50" value="{{ user.name or '' }}" placeholder="نام">
@@ -17,20 +21,7 @@
         <label for="last_name">نام خانوادگی</label>
         <input type="text" id="last_name" name="last_name" maxlength="50" value="{{ user.last_name or '' }}" placeholder="نام خانوادگی">
       </div>
-      <button type="submit" class="btn btn-primary btn-block">ذخیره‌ی اسم و فامیل</button>
-    </form>
-  </div>
-  <div class="form-card">
-    <h2>نام کاربری</h2>
-    <p class="muted">نام کاربری فعلی: <strong>{{ user.username }}</strong></p>
-    <form method="post">
-      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-      <input type="hidden" name="which" value="username">
-      <div class="field">
-        <label for="username">نام کاربری جدید</label>
-        <input type="text" id="username" name="username" required pattern="[\w\-]{3,30}" minlength="3" maxlength="30" value="{{ user.username }}" placeholder="مثلا: ali">
-      </div>
-      <button type="submit" class="btn btn-primary btn-block">تغییر نام کاربری</button>
+      <button type="submit" class="btn btn-primary btn-block">ذخیره‌ی پروفایل</button>
     </form>
   </div>
   <div class="form-card">
