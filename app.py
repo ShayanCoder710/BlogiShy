@@ -11,6 +11,7 @@ from flask import (Flask, abort, flash, jsonify, redirect, render_template,
 from config import ADMIN_PASSWORD, ADMIN_USERNAME, COOKIE_DAYS, MYSQL_CONFIG, SECRET_KEY
 from extensions import csrf, db
 from PIL import Image, ImageOps
+from sqlalchemy import or_
 
 
 def create_app():
@@ -207,7 +208,14 @@ def create_app():
 
     @app.route("/")
     def home():
-        blogs = Blog.query.filter_by(is_public=True)\
+        q = request.args.get("q", "").strip()
+        if q:
+            like = f"%{q}%"
+            blogs = Blog.query.filter(Blog.is_public == True) \
+                .filter(or_(Blog.title.like(like), Blog.body.like(like))) \
+                .order_by(Blog.created_at.desc()).all()
+            return render_template("home.html", blogs=blogs, q=q)
+        blogs = Blog.query.filter_by(is_public=True) \
             .order_by(Blog.created_at.desc()).all()
         return render_template("home.html", blogs=blogs)
 

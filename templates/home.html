@@ -10,15 +10,47 @@
   {% endif %}
 </section>
 
-{% if blogs %}
+<form class="home-search" action="{{ url_for('home') }}" method="get">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
+  <input type="search" name="q" id="home-search-input" value="{{ q if q else '' }}"
+         placeholder="جستجو در بلاگ‌های عمومی…" autocomplete="off">
+</form>
+
+{% if q %}
+<section class="home-latest">
+  <h2>نتایج جستجوی «{{ q }}»</h2>
+  {% if blogs %}
+    <p class="muted">{{ blogs|length | fa }} بلاگ یافت شد</p>
+    <div class="card-grid">
+      {% for b in blogs %}
+        <a class="blog-card" href="{{ url_for('view_blog', token=b.token) }}">
+          <div class="blog-card-media">
+            {% if b.cover %}<img class="blog-card-cover" src="{{ url_for('cover', name=b.cover) }}" alt="">{% else %}<div class="blog-card-cover blog-card-cover-empty"><span>بی‌تصویر</span></div>{% endif %}
+          </div>
+          <div class="blog-card-content">
+            <h3>{{ b.title }}</h3>
+            <p class="blog-card-meta">توسط {{ b.user.display_name }} &middot; {{ b.created_at.strftime('%Y-%m-%d') | fa }}</p>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="muted">موردی با این عبارت پیدا نشد.</p>
+  {% endif %}
+</section>
+{% elif blogs %}
 <section class="home-latest">
   <h2>جدیدترین بلاگ‌های عمومی</h2>
   <div class="card-grid">
     {% for b in blogs %}
       <a class="blog-card" href="{{ url_for('view_blog', token=b.token) }}">
-        {% if b.cover %}<img class="blog-card-cover" src="{{ url_for('cover', name=b.cover) }}" alt="">{% endif %}
-        <h3>{{ b.title }}</h3>
-        <p class="blog-card-meta">توسط {{ b.user.display_name }} &middot; {{ b.created_at.strftime('%Y-%m-%d') | fa }}</p>
+        <div class="blog-card-media">
+          {% if b.cover %}<img class="blog-card-cover" src="{{ url_for('cover', name=b.cover) }}" alt="">{% else %}<div class="blog-card-cover blog-card-cover-empty"><span>بی‌تصویر</span></div>{% endif %}
+        </div>
+        <div class="blog-card-content">
+          <h3>{{ b.title }}</h3>
+          <p class="blog-card-meta">توسط {{ b.user.display_name }} &middot; {{ b.created_at.strftime('%Y-%m-%d') | fa }}</p>
+        </div>
       </a>
     {% endfor %}
   </div>
